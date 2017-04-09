@@ -27,7 +27,9 @@
 		<ul class="nav side-menu">
 		  <li><a><i class="fa fa-product-hunt"></i> Produk <span class="fa fa-chevron-down"></span></a>
 			<ul class="nav child_menu">
+			  <li><a href="{{route('products.index')}}">Produk</a></li>
 			  <li><a href="{{route('brands.index')}}">Brand</a></li>
+			  <li><a href="{{route('divisions.index')}}">Divisi</a></li>
 			</ul>
 		  </li>
 		</ul>  

@@ -24,6 +24,9 @@
 		<link href="{{asset('bower_components/gentelella/vendors/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet"/>
 		<!-- bootstrap-daterangepicker -->
 		<link href="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+		
+		@stack('stylesheet')
+		
 
 		<!-- Custom Theme Style -->
 		<link href="{{asset('bower_components/gentelella/build/css/custom.min.css')}}" rel="stylesheet">
@@ -91,6 +94,8 @@
 
 		<!-- Custom Theme Scripts -->
 		<script src="{{asset('bower_components/gentelella/build/js/custom.min.js')}}"></script>
+		
+		@stack('script')
 	
   </body>
 </html>

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Brand extends Model
+class Photo extends Model
 {
     use SoftDeletes;
 
@@ -22,11 +22,8 @@ class Brand extends Model
      * @var array
      */
 	protected $fillable = [
-		'brand_name',
+		'photo_1',
+		'photo_2',
+		'photo_3',
 	];
-	
-	 public function products()
-    {
-        return $this->hasMany('App\Models\Product','id_brand','id');
-    }
 }
