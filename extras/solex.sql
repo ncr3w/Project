@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2017 at 06:52 PM
+-- Generation Time: Apr 10, 2017 at 05:32 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -211,6 +211,14 @@ CREATE TABLE `brands` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`id`, `brand_name`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 'Nike', '2017-04-08 00:38:31', '2017-04-08 00:38:31', NULL),
+(3, 'Adidas', '2017-04-08 00:39:24', '2017-04-08 00:39:24', NULL),
+(4, 'Jordan', '2017-04-08 01:14:51', '2017-04-08 01:35:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -365,6 +373,13 @@ CREATE TABLE `divisions` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `divisions`
+--
+
+INSERT INTO `divisions` (`id`, `division_name`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Sepatu', '2017-04-08 07:03:39', '2017-04-08 07:07:38', NULL),
+(2, 'Tas', '2017-04-08 07:03:57', '2017-04-08 07:08:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -414,6 +429,18 @@ CREATE TABLE `invoice_details` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `payments`
 --
 
@@ -443,6 +470,57 @@ CREATE TABLE `permissions` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `updated_at`, `deleted_at`, `created_at`) VALUES
+(1, 'create-users', 'Create Users', 'Create Users', '2017-04-09 12:21:18', NULL, '2017-04-09 12:21:18'),
+(2, 'read-users', 'Read Users', 'Read Users', '2017-04-09 12:21:18', NULL, '2017-04-09 12:21:18'),
+(3, 'update-users', 'Update Users', 'Update Users', '2017-04-09 12:21:18', NULL, '2017-04-09 12:21:18'),
+(4, 'delete-users', 'Delete Users', 'Delete Users', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
+(5, 'create-acl', 'Create Acl', 'Create Acl', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
+(6, 'read-acl', 'Read Acl', 'Read Acl', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
+(7, 'update-acl', 'Update Acl', 'Update Acl', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
+(8, 'delete-acl', 'Delete Acl', 'Delete Acl', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
+(9, 'read-profile', 'Read Profile', 'Read Profile', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
+(10, 'update-profile', 'Update Profile', 'Update Profile', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permission_role`
+--
+
+CREATE TABLE `permission_role` (
+  `id_permission` int(10) UNSIGNED NOT NULL,
+  `id_role` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `permission_role`
+--
+
+INSERT INTO `permission_role` (`id_permission`, `id_role`) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(1, 2),
+(2, 2),
+(3, 2),
+(4, 2),
+(9, 2),
+(10, 2),
+(9, 3),
+(10, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -450,12 +528,9 @@ CREATE TABLE `permissions` (
 --
 
 CREATE TABLE `permission_user` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `permission_id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `id_permission` int(10) UNSIGNED NOT NULL,
+  `id_user` int(10) UNSIGNED NOT NULL,
+  `user_type` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -473,6 +548,14 @@ CREATE TABLE `photos` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `photos`
+--
+
+INSERT INTO `photos` (`id`, `photo_1`, `photo_2`, `photo_3`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'a1.jpg', 'a2.jgp', 'a3.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(13, '42nePOIYoaGjxNGXUvdlKI04OKd40SlzA2qI7CiC.png', 'xu4y6JQKGrX0EsECkyrQegVnNwcBeU4JtlE0Jpd1.jpeg', 'IY7EySSpyoSiUmgxxeCt6YcDENBQwNYCgBZV9s0P.png', '2017-04-09 03:50:37', '2017-04-09 05:04:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -529,6 +612,16 @@ CREATE TABLE `products` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `product_name`, `id_brand`, `id_division`, `id_photo`, `gender`, `article`, `alias`, `color`, `retail_price`, `number_sold`, `avg_price_new`, `avg_price_used`, `number_of_view`, `release_date`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(3, 'abc', 2, 1, 1, 1, 'A432', 'red', '0', '542534.0000', 12, '432423.0000', '432432.0000', 5, '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(4, 'def', 2, 2, 1, 1, 'B76452', 'red', '0', '542534.0000', 12, '432423.0000', '432432.0000', 5, '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(5, 'jhg', 3, 1, 1, 0, 'C6u589', 'red', '0', '542534.0000', 12, '432423.0000', '432432.0000', 5, '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(7, 'fdsfds', 2, 1, 13, 0, 'gfdgwe4312', 'gdf', 'gdf', '423432432.0000', 0, NULL, NULL, 0, NULL, '2017-04-09 03:50:37', '2017-04-09 03:50:37', NULL);
 
 -- --------------------------------------------------------
 
@@ -593,20 +686,35 @@ CREATE TABLE `roles` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'superadmin', 'Super Administrator', 'Super Administrator', '2017-04-09 12:21:18', '2017-04-09 12:21:18', NULL),
+(2, 'admin', 'Administrator', 'Administrator', '2017-04-09 12:21:19', '2017-04-09 12:21:19', NULL),
+(3, 'user', 'User', 'User', '2017-04-09 12:21:20', '2017-04-09 12:21:20', NULL);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role_permission`
+-- Table structure for table `role_user`
 --
 
-CREATE TABLE `role_permission` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `role_id` int(10) UNSIGNED NOT NULL,
-  `permission_id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `deleted_at` timestamp NULL DEFAULT NULL
+CREATE TABLE `role_user` (
+  `id_user` int(10) UNSIGNED NOT NULL,
+  `id_role` int(10) UNSIGNED NOT NULL,
+  `user_type` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_user`
+--
+
+INSERT INTO `role_user` (`id_user`, `id_role`, `user_type`) VALUES
+(1, 1, 'App\\User'),
+(2, 2, 'App\\User'),
+(3, 3, 'App\\User');
 
 -- --------------------------------------------------------
 
@@ -728,13 +836,20 @@ CREATE TABLE `users` (
   `balance` decimal(19,4) UNSIGNED NOT NULL DEFAULT '0.0000',
   `reputation` int(11) NOT NULL DEFAULT '100',
   `level` int(11) NOT NULL DEFAULT '1',
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `users`
+--
 
+INSERT INTO `users` (`id`, `name`, `phone`, `email`, `date_of_birth`, `gender`, `password`, `balance`, `reputation`, `level`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'admin', '1111111', 'admin@admin.com', '2016-01-01', 0, '$2y$10$IC/WJMCVbYDcJTKoGJesSuYR1E4VaBYYwF6p8YTlKeDJiHZGL47Se', '0.0000', 100, 1, 'wFfbNjGu9raiprpZK5YcVqA3zD5FOkRqr8jxRyobJ8cJsnJCd3WP6C9xJfNz', '2017-04-09 03:15:38', '2017-04-09 03:15:38', NULL),
+(2, 'staff', '222222', 'staff@staff.com', '2012-06-05', 1, '$2y$10$4.t63MTySq/BjCoKyBNfmemtGivl2Mfba7gmkmvDvv7mKq1RX9jNq', '0.0000', 100, 1, 'fB9LBixQiL3FBD7jyjxUy92GIerPG9Sf93UKi47pJh68ZE3sahdirBV1df1w', '2017-04-09 03:15:38', '2017-04-09 03:15:38', NULL),
+(3, 'user', '333333', 'user@user.com', '1996-10-14', 0, '$2y$10$gCYyfPPfDYm4XkTBMEQ2TOX5ZRiCF0J7TngyBw9b/CRXviIj/m/n.', '0.0000', 100, 1, 'qpK7uneaxv9oarO7QKKW7KURVjWpURdrRD29IYmMVRAvsdeMFJbX9i5upuoW', '2017-04-09 03:15:39', '2017-04-09 03:15:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -747,21 +862,6 @@ CREATE TABLE `user_addresses` (
   `address_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_user` int(10) UNSIGNED NOT NULL,
   `id_address` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_role`
---
-
-CREATE TABLE `user_role` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `role_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -970,6 +1070,12 @@ ALTER TABLE `invoice_details`
   ADD KEY `id_ask` (`id_ask`);
 
 --
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `payments`
 --
 ALTER TABLE `payments`
@@ -982,12 +1088,20 @@ ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `permission_role`
+--
+ALTER TABLE `permission_role`
+  ADD PRIMARY KEY (`id_role`,`id_permission`),
+  ADD KEY `id_role` (`id_role`),
+  ADD KEY `Id_permission` (`id_permission`);
+
+--
 -- Indexes for table `permission_user`
 --
 ALTER TABLE `permission_user`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `permission_id` (`permission_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id_permission`,`id_user`,`user_type`),
+  ADD KEY `permission_id` (`id_permission`),
+  ADD KEY `user_id` (`id_user`);
 
 --
 -- Indexes for table `photos`
@@ -1046,12 +1160,12 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `role_permission`
+-- Indexes for table `role_user`
 --
-ALTER TABLE `role_permission`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_role` (`role_id`),
-  ADD KEY `Id_permission` (`permission_id`);
+ALTER TABLE `role_user`
+  ADD PRIMARY KEY (`id_user`,`id_role`,`user_type`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `is_role` (`id_role`);
 
 --
 -- Indexes for table `shippings`
@@ -1114,14 +1228,6 @@ ALTER TABLE `user_addresses`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_user` (`id_user`),
   ADD KEY `id_address` (`id_address`);
-
---
--- Indexes for table `user_role`
---
-ALTER TABLE `user_role`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`user_id`),
-  ADD KEY `is_role` (`role_id`);
 
 --
 -- Indexes for table `wishlists`
@@ -1251,15 +1357,20 @@ ALTER TABLE `invoices`
 ALTER TABLE `invoice_details`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
   MODIFY `id_cart` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `permission_user`
+-- AUTO_INCREMENT for table `permissions`
 --
-ALTER TABLE `permission_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `permissions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `photos`
 --
@@ -1301,11 +1412,6 @@ ALTER TABLE `regencies`
 ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `role_permission`
---
-ALTER TABLE `role_permission`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `shippings`
 --
 ALTER TABLE `shippings`
@@ -1344,16 +1450,11 @@ ALTER TABLE `ticket_solutions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user_addresses`
 --
 ALTER TABLE `user_addresses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `user_role`
---
-ALTER TABLE `user_role`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `wishlists`
@@ -1502,11 +1603,18 @@ ALTER TABLE `invoice_details`
   ADD CONSTRAINT `ShippingInvoicedetail` FOREIGN KEY (`id_shipping`) REFERENCES `shippings` (`id`);
 
 --
+-- Constraints for table `permission_role`
+--
+ALTER TABLE `permission_role`
+  ADD CONSTRAINT `PermissionRolepermission` FOREIGN KEY (`id_permission`) REFERENCES `permissions` (`id`),
+  ADD CONSTRAINT `RoleRolepermission` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id`);
+
+--
 -- Constraints for table `permission_user`
 --
 ALTER TABLE `permission_user`
-  ADD CONSTRAINT `PermissionPermissionuser` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`),
-  ADD CONSTRAINT `UserPermissionuser` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `PermissionPermissionuser` FOREIGN KEY (`id_permission`) REFERENCES `permissions` (`id`),
+  ADD CONSTRAINT `UserPermissionuser` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `portofolios`
@@ -1542,11 +1650,11 @@ ALTER TABLE `regencies`
   ADD CONSTRAINT `ProvinceRegency` FOREIGN KEY (`id_province`) REFERENCES `provinces` (`id`);
 
 --
--- Constraints for table `role_permission`
+-- Constraints for table `role_user`
 --
-ALTER TABLE `role_permission`
-  ADD CONSTRAINT `PermissionRolepermission` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`),
-  ADD CONSTRAINT `RoleRolepermission` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+ALTER TABLE `role_user`
+  ADD CONSTRAINT `RoleUserrole` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id`),
+  ADD CONSTRAINT `UserUserrole` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `shipping_users`
@@ -1575,13 +1683,6 @@ ALTER TABLE `tickets`
 ALTER TABLE `user_addresses`
   ADD CONSTRAINT `AddressUseraddress` FOREIGN KEY (`id_address`) REFERENCES `addresses` (`id`),
   ADD CONSTRAINT `UserUseraddress` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `user_role`
---
-ALTER TABLE `user_role`
-  ADD CONSTRAINT `RoleUserrole` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
-  ADD CONSTRAINT `UserUserrole` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `wishlists`
