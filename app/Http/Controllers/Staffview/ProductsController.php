@@ -37,7 +37,7 @@ class ProductsController extends Controller
     public function create()	
     {
 		$brands = Brand::all();
-        $divisions = Division::all();		
+        $divisions = Division::all();
 		
 		$params = [
             'brands' => $brands,

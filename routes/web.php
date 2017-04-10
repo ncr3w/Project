@@ -21,7 +21,8 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::group(['prefix' => 'staffview', 'namespace' => 'Staffview'], function () {
+
+Route::group(['prefix' => 'staffview', 'namespace' => 'Staffview','middleware' => ['role:superadmin, role:admin']], function () {	
     Route::resource('brands', 'BrandsController');
     Route::resource('products', 'ProductsController');
     Route::resource('divisions', 'DivisionsController');   

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2017 at 02:51 PM
+-- Generation Time: Apr 09, 2017 at 06:52 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -211,9 +211,6 @@ CREATE TABLE `brands` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `brands`
---
 
 -- --------------------------------------------------------
 
@@ -368,6 +365,7 @@ CREATE TABLE `divisions` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
 -- --------------------------------------------------------
 
 --
@@ -438,9 +436,26 @@ CREATE TABLE `payments` (
 CREATE TABLE `permissions` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permission_user`
+--
+
+CREATE TABLE `permission_user` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `permission_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -451,9 +466,9 @@ CREATE TABLE `permissions` (
 
 CREATE TABLE `photos` (
   `id` int(10) UNSIGNED NOT NULL,
-  `side_view` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `back_view` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `front_view` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo_1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo_2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo_3` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -503,13 +518,13 @@ CREATE TABLE `products` (
   `gender` int(11) NOT NULL,
   `article` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alias` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` int(64) NOT NULL,
+  `color` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `retail_price` decimal(19,4) UNSIGNED NOT NULL,
   `number_sold` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `avg_price_new` decimal(19,4) UNSIGNED NOT NULL,
-  `avg_price_used` decimal(19,4) UNSIGNED NOT NULL,
+  `avg_price_new` decimal(19,4) UNSIGNED DEFAULT NULL,
+  `avg_price_used` decimal(19,4) UNSIGNED DEFAULT NULL,
   `number_of_view` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `release_date` date NOT NULL,
+  `release_date` date DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -571,6 +586,8 @@ CREATE TABLE `regencies` (
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -579,13 +596,13 @@ CREATE TABLE `roles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role_permissions`
+-- Table structure for table `role_permission`
 --
 
-CREATE TABLE `role_permissions` (
+CREATE TABLE `role_permission` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_role` int(10) UNSIGNED NOT NULL,
-  `Id_permission` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `permission_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -717,12 +734,7 @@ CREATE TABLE `users` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `users`
---
 
-INSERT INTO `users` (`id`, `name`, `phone`, `email`, `date_of_birth`, `gender`, `password`, `balance`, `reputation`, `level`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Test', '1243223', 'test@test.com', '2017-01-01', 1, '$2y$10$e8UGnKDpcKBcHfs4BXJsGOG9sN1Dcqv8AjsLi4V8MVqvLiS8Bcb/S', '0.0000', 100, 1, 'sDqWbBn1y46K9BBiYc3VdCh6zrpfA0sFI7IS7Bq5xIRaX9oHOZ0JmpHixEtJ', '2017-04-07 23:37:15', '2017-04-07 23:37:15', NULL);
 
 -- --------------------------------------------------------
 
@@ -743,13 +755,13 @@ CREATE TABLE `user_addresses` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_roles`
+-- Table structure for table `user_role`
 --
 
-CREATE TABLE `user_roles` (
+CREATE TABLE `user_role` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_user` int(10) UNSIGNED NOT NULL,
-  `is_role` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -970,6 +982,14 @@ ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `permission_user`
+--
+ALTER TABLE `permission_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `permission_id` (`permission_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `photos`
 --
 ALTER TABLE `photos`
@@ -1026,12 +1046,12 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `role_permissions`
+-- Indexes for table `role_permission`
 --
-ALTER TABLE `role_permissions`
+ALTER TABLE `role_permission`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_role` (`id_role`),
-  ADD KEY `Id_permission` (`Id_permission`);
+  ADD KEY `id_role` (`role_id`),
+  ADD KEY `Id_permission` (`permission_id`);
 
 --
 -- Indexes for table `shippings`
@@ -1096,12 +1116,12 @@ ALTER TABLE `user_addresses`
   ADD KEY `id_address` (`id_address`);
 
 --
--- Indexes for table `user_roles`
+-- Indexes for table `user_role`
 --
-ALTER TABLE `user_roles`
+ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `is_role` (`is_role`);
+  ADD KEY `id_user` (`user_id`),
+  ADD KEY `is_role` (`role_id`);
 
 --
 -- Indexes for table `wishlists`
@@ -1219,7 +1239,7 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `divisions`
 --
 ALTER TABLE `divisions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `invoices`
 --
@@ -1236,10 +1256,15 @@ ALTER TABLE `invoice_details`
 ALTER TABLE `payments`
   MODIFY `id_cart` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `permission_user`
+--
+ALTER TABLE `permission_user`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `portofolios`
 --
@@ -1254,7 +1279,7 @@ ALTER TABLE `problems`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `product_details`
 --
@@ -1274,11 +1299,11 @@ ALTER TABLE `regencies`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `role_permissions`
+-- AUTO_INCREMENT for table `role_permission`
 --
-ALTER TABLE `role_permissions`
+ALTER TABLE `role_permission`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `shippings`
@@ -1326,9 +1351,9 @@ ALTER TABLE `users`
 ALTER TABLE `user_addresses`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `user_roles`
+-- AUTO_INCREMENT for table `user_role`
 --
-ALTER TABLE `user_roles`
+ALTER TABLE `user_role`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `wishlists`
@@ -1477,6 +1502,13 @@ ALTER TABLE `invoice_details`
   ADD CONSTRAINT `ShippingInvoicedetail` FOREIGN KEY (`id_shipping`) REFERENCES `shippings` (`id`);
 
 --
+-- Constraints for table `permission_user`
+--
+ALTER TABLE `permission_user`
+  ADD CONSTRAINT `PermissionPermissionuser` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`),
+  ADD CONSTRAINT `UserPermissionuser` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
 -- Constraints for table `portofolios`
 --
 ALTER TABLE `portofolios`
@@ -1510,11 +1542,11 @@ ALTER TABLE `regencies`
   ADD CONSTRAINT `ProvinceRegency` FOREIGN KEY (`id_province`) REFERENCES `provinces` (`id`);
 
 --
--- Constraints for table `role_permissions`
+-- Constraints for table `role_permission`
 --
-ALTER TABLE `role_permissions`
-  ADD CONSTRAINT `PermissionRolepermission` FOREIGN KEY (`Id_permission`) REFERENCES `permissions` (`id`),
-  ADD CONSTRAINT `RoleRolepermission` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id`);
+ALTER TABLE `role_permission`
+  ADD CONSTRAINT `PermissionRolepermission` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`),
+  ADD CONSTRAINT `RoleRolepermission` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 
 --
 -- Constraints for table `shipping_users`
@@ -1545,11 +1577,11 @@ ALTER TABLE `user_addresses`
   ADD CONSTRAINT `UserUseraddress` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `user_roles`
+-- Constraints for table `user_role`
 --
-ALTER TABLE `user_roles`
-  ADD CONSTRAINT `RoleUserrole` FOREIGN KEY (`is_role`) REFERENCES `roles` (`id`),
-  ADD CONSTRAINT `UserUserrole` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+ALTER TABLE `user_role`
+  ADD CONSTRAINT `RoleUserrole` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
+  ADD CONSTRAINT `UserUserrole` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `wishlists`

@@ -14,7 +14,16 @@
 	  <div class="profile_info">
 		<span>Welcome,</span>
 		<h2>{{ Auth::user()->name }}</h2>
-	  </div>
+		@role('superadmin')
+			<h2>Muncul hanya untuk super admin</h2>
+		@endrole
+		@role('admin')
+			<h2>Muncul hanya untuk admin</h2>
+		@endrole
+		@role('user')
+			<h2>Muncul hanya untuk user</h2>
+		@endrole
+  </div>
 	</div>
 	<!-- /menu profile quick info -->
 
