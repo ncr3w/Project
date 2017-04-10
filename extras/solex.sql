@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2017 at 05:32 AM
+-- Generation Time: Apr 10, 2017 at 09:31 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -31,6 +31,7 @@ CREATE TABLE `addresses` (
   `id_district` int(10) UNSIGNED NOT NULL,
   `id_regency` int(10) UNSIGNED NOT NULL,
   `id_province` int(10) UNSIGNED NOT NULL,
+  `id_user` int(10) UNSIGNED NOT NULL,
   `Adress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Phone` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `postal_code` int(11) UNSIGNED NOT NULL,
@@ -479,12 +480,12 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `updated
 (2, 'read-users', 'Read Users', 'Read Users', '2017-04-09 12:21:18', NULL, '2017-04-09 12:21:18'),
 (3, 'update-users', 'Update Users', 'Update Users', '2017-04-09 12:21:18', NULL, '2017-04-09 12:21:18'),
 (4, 'delete-users', 'Delete Users', 'Delete Users', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
-(5, 'create-acl', 'Create Acl', 'Create Acl', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
+(5, 'create-acl', 'Create Acl', 'Create Acl', '2017-04-10 00:31:24', NULL, '2017-04-09 12:21:19'),
 (6, 'read-acl', 'Read Acl', 'Read Acl', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
 (7, 'update-acl', 'Update Acl', 'Update Acl', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
 (8, 'delete-acl', 'Delete Acl', 'Delete Acl', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
 (9, 'read-profile', 'Read Profile', 'Read Profile', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19'),
-(10, 'update-profile', 'Update Profile', 'Update Profile', '2017-04-09 12:21:19', NULL, '2017-04-09 12:21:19');
+(10, 'update-profile', 'Update Profile', 'Update Profile User', '2017-04-10 00:29:42', NULL, '2017-04-09 12:21:19');
 
 -- --------------------------------------------------------
 
@@ -621,7 +622,7 @@ INSERT INTO `products` (`id`, `product_name`, `id_brand`, `id_division`, `id_pho
 (3, 'abc', 2, 1, 1, 1, 'A432', 'red', '0', '542534.0000', 12, '432423.0000', '432432.0000', 5, '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (4, 'def', 2, 2, 1, 1, 'B76452', 'red', '0', '542534.0000', 12, '432423.0000', '432432.0000', 5, '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (5, 'jhg', 3, 1, 1, 0, 'C6u589', 'red', '0', '542534.0000', 12, '432423.0000', '432432.0000', 5, '0000-00-00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(7, 'fdsfds', 2, 1, 13, 0, 'gfdgwe4312', 'gdf', 'gdf', '423432432.0000', 0, NULL, NULL, 0, NULL, '2017-04-09 03:50:37', '2017-04-09 03:50:37', NULL);
+(7, '645', 2, 1, 13, 0, '76576576', 'gdf', 'gdf', '423432432.0000', 0, NULL, NULL, 0, NULL, '2017-04-09 03:50:37', '2017-04-10 00:11:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -847,25 +848,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `phone`, `email`, `date_of_birth`, `gender`, `password`, `balance`, `reputation`, `level`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'admin', '1111111', 'admin@admin.com', '2016-01-01', 0, '$2y$10$IC/WJMCVbYDcJTKoGJesSuYR1E4VaBYYwF6p8YTlKeDJiHZGL47Se', '0.0000', 100, 1, 'wFfbNjGu9raiprpZK5YcVqA3zD5FOkRqr8jxRyobJ8cJsnJCd3WP6C9xJfNz', '2017-04-09 03:15:38', '2017-04-09 03:15:38', NULL),
+(1, 'superadmin', '1111111', 'admin@admin.com', '2016-01-01', 0, '$2y$10$IC/WJMCVbYDcJTKoGJesSuYR1E4VaBYYwF6p8YTlKeDJiHZGL47Se', '0.0000', 100, 1, 'CBqatRsWFd0ivCnB6bcWk0Q0tWVSUzuqiuuEDPZZpjsT4Qn4WFHHLvVVbcP0', '2017-04-09 03:15:38', '2017-04-09 03:15:38', NULL),
 (2, 'staff', '222222', 'staff@staff.com', '2012-06-05', 1, '$2y$10$4.t63MTySq/BjCoKyBNfmemtGivl2Mfba7gmkmvDvv7mKq1RX9jNq', '0.0000', 100, 1, 'fB9LBixQiL3FBD7jyjxUy92GIerPG9Sf93UKi47pJh68ZE3sahdirBV1df1w', '2017-04-09 03:15:38', '2017-04-09 03:15:38', NULL),
 (3, 'user', '333333', 'user@user.com', '1996-10-14', 0, '$2y$10$gCYyfPPfDYm4XkTBMEQ2TOX5ZRiCF0J7TngyBw9b/CRXviIj/m/n.', '0.0000', 100, 1, 'qpK7uneaxv9oarO7QKKW7KURVjWpURdrRD29IYmMVRAvsdeMFJbX9i5upuoW', '2017-04-09 03:15:39', '2017-04-09 03:15:39', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_addresses`
---
-
-CREATE TABLE `user_addresses` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `address_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_user` int(10) UNSIGNED NOT NULL,
-  `id_address` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -893,7 +878,8 @@ ALTER TABLE `addresses`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_district` (`id_district`),
   ADD KEY `id_regency` (`id_regency`),
-  ADD KEY `id_province` (`id_province`);
+  ADD KEY `id_province` (`id_province`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `asks`
@@ -1222,14 +1208,6 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_addresses`
---
-ALTER TABLE `user_addresses`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_address` (`id_address`);
-
---
 -- Indexes for table `wishlists`
 --
 ALTER TABLE `wishlists`
@@ -1370,7 +1348,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `photos`
 --
@@ -1452,11 +1430,6 @@ ALTER TABLE `ticket_solutions`
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `user_addresses`
---
-ALTER TABLE `user_addresses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
@@ -1471,7 +1444,8 @@ ALTER TABLE `wishlists`
 ALTER TABLE `addresses`
   ADD CONSTRAINT `DistrictAddress` FOREIGN KEY (`id_district`) REFERENCES `districts` (`id`),
   ADD CONSTRAINT `ProvinceAddress` FOREIGN KEY (`id_province`) REFERENCES `provinces` (`id`),
-  ADD CONSTRAINT `RegencyAddress` FOREIGN KEY (`id_regency`) REFERENCES `regencies` (`id`);
+  ADD CONSTRAINT `RegencyAddress` FOREIGN KEY (`id_regency`) REFERENCES `regencies` (`id`),
+  ADD CONSTRAINT `UserAdress` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `asks`
@@ -1676,13 +1650,6 @@ ALTER TABLE `staff_tickets`
 ALTER TABLE `tickets`
   ADD CONSTRAINT `DetailTicket` FOREIGN KEY (`id_ticket_detail`) REFERENCES `ticket_details` (`id`),
   ADD CONSTRAINT `SolutionTicket` FOREIGN KEY (`id_ticket_solution`) REFERENCES `ticket_solutions` (`id`);
-
---
--- Constraints for table `user_addresses`
---
-ALTER TABLE `user_addresses`
-  ADD CONSTRAINT `AddressUseraddress` FOREIGN KEY (`id_address`) REFERENCES `addresses` (`id`),
-  ADD CONSTRAINT `UserUseraddress` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `wishlists`

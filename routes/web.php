@@ -23,9 +23,16 @@ Route::get('/', 'HomeController@index');
 
 
 Route::group(['prefix' => 'staffview', 'namespace' => 'Staffview','middleware' => ['role:superadmin, role:admin']], function () {	
+	Route::get('roles/showpermission/{id}',[ 'uses' => 'RolesController@showpermission', 'as' => 'roles.showpermission']);
+	Route::post('roles/editpermission/{id}',[ 'uses' => 'RolesController@editpermission', 'as' => 'roles.editpermission']);
+
     Route::resource('brands', 'BrandsController');
     Route::resource('products', 'ProductsController');
-    Route::resource('divisions', 'DivisionsController');   
+    Route::resource('divisions', 'DivisionsController'); 
+	Route::resource('staffs', 'StaffsController'); 
+	Route::resource('customers', 'UsersController');
+	Route::resource('roles', 'RolesController'); 
+	Route::resource('permissions', 'PermissionsController');
 });
 
 Route::group(['prefix' => 'staffview','namespace' => 'Auth'],function(){
