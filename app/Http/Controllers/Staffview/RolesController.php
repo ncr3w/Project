@@ -211,10 +211,9 @@ class RolesController extends Controller
     }
 	
 	
-    public function editpermission($id)
+    public function editpermission(Request $request, $id)
     {
 		 try{
-			$roles = Role::findOrFail($id);	
 			
 			$roles = Role::findOrFail($id);	
 

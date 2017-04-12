@@ -9,7 +9,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Staff <a href="{{route('staffs.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Add Staff </a></h2>
+                    <h2>User <a href="{{route('customers.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Add </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -18,9 +18,10 @@
                         <thead>
                             <tr>
 							<th>Nama</th>
-							<th>Phone</th>
+							<th>Telepon</th>
 							<th>Email</th>
-							<th>Address</th>
+							<th>Gender</th>
+							<th>Tanggal Lahir</th>
 							<th>Role</th>
 							<th>Action</th>
                             </tr>
@@ -28,33 +29,27 @@
                         <tfoot>
                             <tr>
 							<th>Nama</th>
-							<th>Phone</th>
+							<th>Telepon</th>
 							<th>Email</th>
-							<th>Address</th>
+							<th>Gender</th>
+							<th>Tanggal Lahir</th>
 							<th>Role</th>
 							<th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @if (count($staffs))
-							@foreach($staffs as $row)
+                            @if (count($customers))
+							@foreach($customers as $row)
                             <tr>							
 								<td>{{ $row->name }}</td>
 								<td>{{ $row->phone }}</td>
-								<td>{{ $row->email }}</td>								
-								<td>
-									@foreach($row->address as $row2)
-										{{ $row2->address }}
-									@endforeach	
-								</td>
-								<td>
-									@foreach($row->roles as $row2)
-										<span class="label label-info">{{ $row2->display_name }}</span>
-									@endforeach 
-								</td>
+								<td>{{ $row->email }}</td>
+								<td>@if ( $row->gender == 0) Male @else Female @endif</td>
+								<td>{{ $row->date_of_birth }}</td>
+								<td>@foreach($row->roles as $row2) {{ $row2->display_name }} @endforeach </td>
                                 <td>
-                                    <a href="{{ route('staffs.edit', ['id' =>  $row->id ]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Edit"></i> Edit</a>
-                                    <a href="{{ route('staffs.show', ['id' =>  $row->id  ]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> Delete</a>
+                                    <a href="{{ route('customers.edit', ['id' =>  $row->id ]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Edit"></i> Edit</a>
+                                    <a href="{{ route('customers.show', ['id' =>  $row->id  ]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> Delete</a>
                                 </td>
                             </tr>  
 							@endforeach

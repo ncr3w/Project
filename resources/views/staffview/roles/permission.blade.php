@@ -7,7 +7,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Ubah Role Permission <a href="{{route('roles.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Kembali </a></h2>
+                    <h2>Edit Role Permission <a href="{{route('roles.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -54,9 +54,9 @@
 								@if (count($permissions))
 									@foreach($permissions as $row)
 										@if($roles->hasPermission($row->name))
-											<div> <input name="permissions[]" type="checkbox" checked value={{ $row->id }}>  {{ $row->display_name}}  ({{ $row->description }})</div>
+											<div> <input name="permissions[]" type="checkbox" class="flat" checked value={{ $row->id }}>  {{ $row->display_name}}  ({{ $row->description }})</div>
 										@else
-											<div> <input name="permissions[]" type="checkbox" value={{ $row->id }}>  {{ $row->display_name}}  ({{ $row->description }})</div>	
+											<div> <input name="permissions[]" type="checkbox" class="flat" value={{ $row->id }}>  {{ $row->display_name}}  ({{ $row->description }})</div>	
 										@endif
 									@endforeach
 								@endif
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <input type="hidden" name="_token" value="{{ Session::token() }}">
-                                <button type="submit" class="btn btn-success">Ubah Role Permission</button>
+                                <button type="submit" class="btn btn-success">Save</button>
                             </div>
                         </div>
                     </form>

@@ -7,7 +7,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Tambahkan Role <a href="{{route('roles.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Kembali </a></h2>
+                    <h2>Add Role <a href="{{route('roles.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -48,7 +48,7 @@
                         </div>
 						
 						<div class="form-group{{ $errors->has('permissions') ? ' has-error' : '' }}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="permissions"> Permission
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="permissions"> Permission <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
 								@if (count($permissions))
@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <input type="hidden" name="_token" value="{{ Session::token() }}">
-                                <button type="submit" class="btn btn-success">Tambahkan Role</button>
+                                <button type="submit" class="btn btn-success">Add Role</button>
                             </div>
                         </div>
                     </form>

@@ -6,6 +6,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
 
 		<title>Solex Project</title>
 
@@ -91,9 +92,13 @@
 		<!-- bootstrap-daterangepicker -->
 		<script src="{{asset('bower_components/gentelella/vendors/moment/min/moment.min.js')}}"></script>
 		<script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+		<!-- jquery.inputmask -->
+		<script src="{{asset('bower_components/gentelella/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
 
 		<!-- Custom Theme Scripts -->
 		<script src="{{asset('bower_components/gentelella/build/js/custom.min.js')}}"></script>
+			<!--LocationDropdown-->
+			<script src="{{asset('js/address.dropdownbox.js')}}"></script>
 		
 		@stack('script')
 	

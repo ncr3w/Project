@@ -83,9 +83,6 @@ class ProductsController extends Controller
 			'photo_3' => $file3[3],
 		])->id;
 		
-		$productinfo = 
-		
-	
 		$product = Product::create([
 			'product_name' =>  $request->input('product_name'),
 			'article' => $request->input('article'),

@@ -9,12 +9,12 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Permission <a href="{{route('permissions.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Tambahkan Permission </a></h2>
+                    <h2>Permission <a href="{{route('permissions.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Add Permission </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
 					
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <table id="datatable" class="table table-striped table-borderless">
                         <thead>
                             <tr>	
 								<th>Id</th>
@@ -36,11 +36,11 @@
 							@foreach($permissions as $row)
                             <tr>	
 								<td>{{ $row->id }}</td>
-                                <td>{{ $row->display_name }}</td>
+                                <td>{{ $row->name }}</td>
 								<td>{{ $row->description }}</td>
                                 <td>
-                                    <a href="{{ route('permissions.edit', ['id' =>  $row->id ]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Ubah"></i> Ubah</a>
-                                    <a href="{{ route('permissions.show', ['id' =>  $row->id  ]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Hapus"></i> Hapus</a>
+                                    <a href="{{ route('permissions.edit', ['id' =>  $row->id ]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Edit"></i> Edit</a>
+                                    <a href="{{ route('permissions.show', ['id' =>  $row->id  ]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> Delete</a>
                                 </td>
                             </tr>  
 							@endforeach

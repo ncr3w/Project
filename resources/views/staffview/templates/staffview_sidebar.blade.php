@@ -35,26 +35,64 @@
 		<h3>Produk</h3>
 		<ul class="nav side-menu">
 		
-		<li><a><i class="fa fa-user"></i> User <span class="fa fa-chevron-down"></span></a>
-			<ul class="nav child_menu">
-			  <li><a href="{{route('staffs.index')}}">Staff</a></li>
+
+		<li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
+			<ul class="nav child_menu">			  
 			  <li><a href="{{route('customers.index')}}">Customer</a></li>
-			  <li><a href="{{route('customers.index')}}">Grafik Customer</a></li>
+			  <li><a href="{{route('customers.index')}}">Customer Graphs</a></li>
 			</ul>
 		  </li>
 		
-		  <li><a><i class="fa fa-product-hunt"></i> Produk <span class="fa fa-chevron-down"></span></a>
+		  <li><a><i class="fa fa-product-hunt"></i> Products <span class="fa fa-chevron-down"></span></a>
 			<ul class="nav child_menu">
-			  <li><a href="{{route('products.index')}}">Produk</a></li>
+			  <li><a href="{{route('products.index')}}">Product</a></li>
 			  <li><a href="{{route('brands.index')}}">Brand</a></li>
-			  <li><a href="{{route('divisions.index')}}">Divisi</a></li>
+			  <li><a href="{{route('divisions.index')}}">Division</a></li>
 			</ul>
 		  </li>
 		  
-		  <li><a><i class="fa fa-lock"></i> Permission <span class="fa fa-chevron-down"></span></a>
+		   <li><a><i class="fa fa-usd"></i> Transaction <span  class="label label-success pull-right">Belum jadi</span></a>
 			<ul class="nav child_menu">
-			  <li><a href="{{route('roles.index')}}">Role</a></li>
-			  <li><a href="{{route('permissions.index')}}">Permission</a></li>			  
+			  <li><a href="{{route('products.index')}}">Waiting</a></li>
+			  <li><a href="{{route('products.index')}}">Tracking</a></li>
+			  <li><a href="{{route('brands.index')}}">Finished</a></li>
+			</ul>
+		  </li>
+		  
+		   <li><a><i class="fa fa-shopping-cart"></i> Sales <span  class="label label-success pull-right">Belum jadi</span></a>
+			<ul class="nav child_menu">
+			  <li><a href="{{route('products.index')}}">Asks</a></li>
+			  <li><a href="{{route('brands.index')}}">Bids</a></li>
+			  <li><a href="{{route('divisions.index')}}">Sales Graph</a></li>
+			</ul>
+		  </li>	
+
+		  <li><a><i class="fa fa-book"></i> Site Content <span  class="label label-success pull-right">Belum jadi</span></a>
+			<ul class="nav child_menu">
+			  <li><a href="{{route('products.index')}}">Blog</a></li>
+			  <li><a href="{{route('brands.index')}}">Banner</a></li>
+			</ul>
+		  </li>
+		  
+		<li><a><i class="fa fa-thumbs-down"></i> Complain <span  class="label label-success pull-right">Belum jadi</span></a>
+			<ul class="nav child_menu">
+			  <li><a href="{{route('products.index')}}">In-Progress</a></li>
+			  <li><a href="{{route('brands.index')}}">Finished</a></li>
+			</ul>
+		  </li>
+		  
+		  <li><a><i class="fa fa-lock"></i> Staffs & Permissions<span class="fa fa-chevron-down"></span></a>
+			<ul class="nav child_menu">
+			  <li><a href="{{route('staffs.index')}}">Staffs</a></li>	
+			  <li><a href="{{route('roles.index')}}">Roles</a></li>
+			  <li><a href="{{route('permissions.index')}}">Permissions</a></li>			  
+			</ul>
+		  </li>
+		  
+		  <li><a><i class="fa fa-balance-scale"></i> Balance <span  class="label label-success pull-right">Belum jadi</span></a>
+			<ul class="nav child_menu">
+			  <li><a href="{{route('products.index')}}">Balance Details</a></li>
+			  <li><a href="{{route('brands.index')}}">Balance Graph</a></li>
 			</ul>
 		  </li>
 		  

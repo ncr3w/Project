@@ -8,16 +8,16 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Konfirmasi hapus data <a href="{{route('divisions.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Kembali </a></h2>
+                    <h2>Confirm Deletion <a href="{{route('divisions.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <p>Hapus <strong>{{ $divisions->division_name }}</strong> ?</p>
+                    <p>Delete <strong>{{ $divisions->division_name }}</strong> ?</p>
 
                     <form method="POST" action="{{ route('divisions.destroy', ['id' => $divisions->id]) }}">
                         <input type="hidden" name="_token" value="{{ Session::token() }}">
                         <input name="_method" type="hidden" value="DELETE">
-                        <button type="submit" class="btn btn-danger">Ya, hapus</button>
+                        <button type="submit" class="btn btn-danger">Ya, Delete</button>
                     </form>
                 </div>
             </div>

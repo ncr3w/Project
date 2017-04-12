@@ -9,12 +9,12 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Divisi <a href="{{route('divisions.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Tambahkan Divisi </a></h2>
+                    <h2>Division <a href="{{route('divisions.create')}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Add </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
 					
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <table id="datatable" class="table table-striped table-borderless">
                         <thead>
                             <tr>
                                 <th>Nama Divisi</th>
@@ -33,8 +33,8 @@
                             <tr>
                                 <td>{{ $row->division_name }}</td>
                                 <td>
-                                    <a href="{{ route('divisions.edit', ['id' =>  $row->id ]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Ubah"></i> Ubah</a>
-                                    <a href="{{ route('divisions.show', ['id' =>  $row->id  ]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Hapus"></i> Hapus</a>
+                                    <a href="{{ route('divisions.edit', ['id' =>  $row->id ]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Edit"></i> Edit</a>
+                                    <a href="{{ route('divisions.show', ['id' =>  $row->id  ]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> Delete</a>
                                 </td>
                             </tr>  
 							@endforeach

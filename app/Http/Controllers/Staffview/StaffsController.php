@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Staffview;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Model\Address;
-use App\Model\District;
-use App\Model\Regency;
-use App\Model\Province;
-use App\Model\Country;
+use App\Role;
+use App\Models\Address;
+use App\Models\District;
+use App\Models\Regency;
+use App\Models\Province;
+use App\Models\Country;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class StaffsController extends Controller
@@ -22,12 +23,19 @@ class StaffsController extends Controller
     public function index()
     {
 		// get all the items
-        $staffs = User::all();
-
+        $temp = User::all();
+		$staffs = array();
+		
+		foreach ($temp as $row) {
+			if($row->hasRole(['superadmin','admin'])){
+				array_push($staffs,$row);
+			}
+		}
+		
         // load the view and pass the items        
 
         return view('staffview.staffs.list')
-			->with('staffs', $staffs);;
+			->with('staffs', $staffs);
     }
 
     /**
@@ -35,9 +43,18 @@ class StaffsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('staffview.staffs.create');
+	public function create() 
+	{	
+		$provinces = Province::all();
+		$roles = Role::all();
+		
+		$params = [
+            'provinces' => $provinces,
+            'roles' => $roles,
+		];
+
+		return view('staffview.staffs.create')
+			->with($params);
     }
 
     /**

@@ -30,7 +30,7 @@ Route::group(['prefix' => 'staffview', 'namespace' => 'Staffview','middleware' =
     Route::resource('products', 'ProductsController');
     Route::resource('divisions', 'DivisionsController'); 
 	Route::resource('staffs', 'StaffsController'); 
-	Route::resource('customers', 'UsersController');
+	Route::resource('customers', 'CustomersController');
 	Route::resource('roles', 'RolesController'); 
 	Route::resource('permissions', 'PermissionsController');
 });
@@ -47,6 +47,11 @@ Route::group(['prefix' => 'staffview','namespace' => 'Auth'],function(){
     Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset.token');
     Route::post('password/reset', 'ResetPasswordController@reset');
 });
+
+Route::group(['prefix' => 'location', 'namespace' => 'Location'], function () {
+	Route::get('regencies/{id}',[ 'uses' => 'RegenciesController@getRegencies', 'as' => 'location.getregencies']);
+	Route::get('districts/{id}',[ 'uses' => 'DistrictsController@getDistricts', 'as' => 'location.getdistrict']);
+});	
 
 
 

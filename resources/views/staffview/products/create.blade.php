@@ -7,7 +7,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Tambahkan Produk <a href="{{route('products.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Kembali </a></h2>
+                    <h2>Add Product <a href="{{route('products.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -30,6 +30,7 @@
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 							  <select id="brand_name" name="brand_name" class="form-control col-md-7 col-xs-12">
+							  <option value="" selected disabled >--Select Brand--</option>	
 									@foreach($brands as $row)
 										@if(Request::old('brand_name')) == $row->id )
 											<option value="{{ $row->id }}" selected >{{ $row->brand_name }}</option>
@@ -49,6 +50,7 @@
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 							  <select id="division_name" name="division_name" class="form-control col-md-7 col-xs-12">
+							  <option value="" selected disabled >--Select Division--</option>	
 									@foreach($divisions as $row)
 										@if(Request::old('division_name')) == $row->id  )
 											<option value="{{ $row->id }}" selected >{{ $row->division_name }}</option>
@@ -157,7 +159,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <input type="hidden" name="_token" value="{{ Session::token() }}">
-                                <button type="submit" class="btn btn-success">Tambahkan Produk</button>
+                                <button type="submit" class="btn btn-success">Add Produk</button>
                             </div>
                         </div>
                     </form>

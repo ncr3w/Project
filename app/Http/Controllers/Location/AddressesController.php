@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Staffview;
+namespace App\Http\Controllers\Location;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Model\Address;
-use App\Model\District;
-use App\Model\Regency;
-use App\Model\Province;
-use App\Model\Country;
+use App\Models\Address;
+use App\Models\Province;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class CustomersController extends Controller
+class AddressesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,18 +18,12 @@ class CustomersController extends Controller
     public function index()
     {
 		// get all the items
-        $temp = User::All();
-		$customers = array();
-		
-		foreach ($temp as $row) {
-			if($row->hasRole('user')){
-				array_push($customers,$row);
-			}
-		}
+        $brands = Brand::all();
+
         // load the view and pass the items        
 
-        return view('staffview.customers.list')
-			->with('customers', $customers);;
+        return view('staffview.brands.list')
+			->with('brands', $brands);;
     }
 
     /**
@@ -43,7 +33,7 @@ class CustomersController extends Controller
      */
     public function create()
     {
-        return view('staffview.customers.create');
+        return view('staffview.brands.create');
     }
 
     /**
@@ -55,14 +45,14 @@ class CustomersController extends Controller
     public function store(Request $request)
     {
 		$this->validate($request, [
-			'name' => 'required|unique:customers,name'
+			'brand_name' => 'required|unique:brands,brand_name'
 		]);
 
-		$User = User::create([
-			'name' =>  $request->input('name'),
+		$brand = Brand::create([
+			'brand_name' =>  $request->input('brand_name'),
 		]);
 	
-        return redirect()->route('customers.index')->with('success', "$User->name berhasil ditambahkan.");
+        return redirect()->route('brands.index')->with('success', "$brand->brand_name berhasil ditambahkan.");
     }
 
     /**
@@ -74,10 +64,10 @@ class CustomersController extends Controller
     public function show($id)
     {
         try{
-            $customers = User::findOrFail($id);		
+            $brands = Brand::findOrFail($id);		
 		
-			return view('staffview.customers.delete')
-				->with('customers', $customers);
+			return view('staffview.brands.delete')
+				->with('brands', $brands);
 		}
 		catch (ModelNotFoundException $ex) 
         {
@@ -97,10 +87,10 @@ class CustomersController extends Controller
     public function edit($id)
     {
 		 try{
-            $customers = User::findOrFail($id);		
+            $brands = Brand::findOrFail($id);		
 		
-			return view('staffview.customers.edit')
-				->with('customers', $customers);
+			return view('staffview.brands.edit')
+				->with('brands', $brands);
 		}
 		catch (ModelNotFoundException $ex) 
         {
@@ -123,15 +113,15 @@ class CustomersController extends Controller
 		try{
 
 			$this->validate($request, [
-				'name' => 'required|unique:customers,name,'.$id,
+				'brand_name' => 'required|unique:brands,brand_name,'.$id,
 			]);
 
-            $customers = User::findOrFail($id);	
+            $brands = Brand::findOrFail($id);	
 
-			$customers->name = $request->input('name');
-            $customers->save();
+			$brands->brand_name = $request->input('brand_name');
+            $brands->save();
 		
-			return redirect()->route('customers.index')->with('success', "$customers->name berhasil diubah.");
+			return redirect()->route('brands.index')->with('success', "$brands->brand_name berhasil diubah.");
 		}
 		catch (ModelNotFoundException $ex) 
         {
@@ -153,11 +143,11 @@ class CustomersController extends Controller
     public function destroy($id)
     {
 		 try{
-            $customers = User::findOrFail($id);	
+            $brands = Brand::findOrFail($id);	
 
-			$customers->delete();
+			$brands->delete();
 		
-			return redirect()->route('customers.index')->with('success', "$customers->name berhasil dihapus");
+			return redirect()->route('brands.index')->with('success', "$brands->brand_name berhasil dihapus");
 		}
 		catch (ModelNotFoundException $ex) 
         {
@@ -167,4 +157,5 @@ class CustomersController extends Controller
             }
         }
     }
+
 }
