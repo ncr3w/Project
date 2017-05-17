@@ -24,27 +24,17 @@ class Address extends Model
 	protected $fillable = [
 		'id_user',
 		'id_district',
-		'id_regency',
-		'id_province',
-		'Adress', 	
-		'Phone',
+		'address', 	
+		'phone',
 		'postal_code', 
+		'mod_user',
 	];	
 	
-	public function regency()
-	{
-		return $this->belongsTo('App\Models\Regency','id_regency');
-	}
 	
 	public function district()
 	{
-		return $this->belongsTo('App\Models\District','id_distrcit');
-	}
-	
-	public function province()
-	{
-		return $this->belongsTo('App\Models\Province','id_province');
-	}
+		return $this->belongsTo('App\Models\District','id_district');
+	}	
 	
 	public function user()
 	{

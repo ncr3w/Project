@@ -18,12 +18,27 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="division_name"> Nama <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" value={{ $divisions->division_name }} id="division_name" name="division_name" class="form-control col-md-7 col-xs-12">
+								<input type="text" value="{{ $divisions->division_name }}" id="division_name" name="division_name" class="form-control col-md-7 col-xs-12">
                                 @if ($errors->has('division_name'))
                                 <span class="help-block">{{ $errors->first('division_name') }}</span>
                                 @endif
                             </div>
                         </div>
+						
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Image </label>
+							<img src="{{asset('storage/images/divisions/'.$brands->image.'')}}" width="150" height="75">
+						</div>							
+						
+						<div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+							<label class="control-label" for="image">Edit  </label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<input type="file" name="image" id="image" class="file"> 
+								@if ($errors->has('image'))
+								<span class="help-block">{{ $errors->first('image') }}</span>
+								@endif
+							</div>
+						</div>
 
                         <div class="ln_solid"></div>
 

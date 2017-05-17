@@ -44,11 +44,17 @@ class DivisionsController extends Controller
     public function store(Request $request)
     {
 		$this->validate($request, [
-			'division_name' => 'required|unique:divisions,division_name'
+			'division_name' => 'required|unique:divisions,division_name',
+			'image' => 'required|image|mimes:jpg,jpeg,bmp,png|max:2000',
 		]);
+		
+		$temp1 = $request->image->store('public/images/divisions');
+		$file1 = explode("/",$temp1);
 
 		$division = Division::create([
 			'division_name' =>  $request->input('division_name'),
+			'image' => $file1[3],
+			'mod_user' =>  \Auth::User()->name(),
 		]);
 	
         return redirect()->route('divisions.index')->with('success', "$division->division_name berhasil ditambahkan.");
@@ -113,11 +119,21 @@ class DivisionsController extends Controller
 
 			$this->validate($request, [
 				'division_name' => 'required|unique:divisions,division_name,'.$id,
+				'image' => 'required|image|mimes:jpg,jpeg,bmp,png|max:2000',
 			]);
+			
+			if($request->hasFile('image')){
+				$temp = $request->photo_1->store('public/images/divisions');
+				$file = explode("/",$temp);
+			}
+			
+			$file="";
 
             $divisions = Division::findOrFail($id);	
 
 			$divisions->division_name = $request->input('division_name');
+			$divisions->mod_user = \Auth::user()->name;	
+			$divisions->image = $file[3];
             $divisions->save();
 		
 			return redirect()->route('divisions.index')->with('success', "$divisions->division_name berhasil diubah.");
@@ -143,7 +159,8 @@ class DivisionsController extends Controller
     {
 		 try{
             $divisions = Division::findOrFail($id);	
-
+			$divisions->mod_user = \Auth::user()->name;	
+			$divisions->save();
 			$divisions->delete();
 		
 			return redirect()->route('divisions.index')->with('success', "$divisions->division_name berhasil dihapus");

@@ -12,7 +12,7 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form method="post" action="{{ route('products.store') }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">                     
+                    <form method="post" action="{{ route('products.store') }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">          
 
                         <div class="form-group{{ $errors->has('product_name') ? ' has-error' : '' }}">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_name"> Nama Produk <span class="required">*</span>
@@ -32,7 +32,7 @@
 							  <select id="brand_name" name="brand_name" class="form-control col-md-7 col-xs-12">
 							  <option value="" selected disabled >--Select Brand--</option>	
 									@foreach($brands as $row)
-										@if(Request::old('brand_name')) == $row->id )
+										@if(Request::old('brand_name') == $row->id )
 											<option value="{{ $row->id }}" selected >{{ $row->brand_name }}</option>
 										@else
 											<option value="{{ $row->id }}">{{ $row->brand_name }}</option>
@@ -52,7 +52,7 @@
 							  <select id="division_name" name="division_name" class="form-control col-md-7 col-xs-12">
 							  <option value="" selected disabled >--Select Division--</option>	
 									@foreach($divisions as $row)
-										@if(Request::old('division_name')) == $row->id  )
+										@if(Request::old('division_name') == $row->id  )
 											<option value="{{ $row->id }}" selected >{{ $row->division_name }}</option>
 										@else
 											<option value="{{ $row->id }}">{{ $row->division_name }}</option>

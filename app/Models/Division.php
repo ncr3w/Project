@@ -23,6 +23,8 @@ class Division extends Model
      */
 	protected $fillable = [
 		'division_name',
+		'mod_user',
+		'image'
 	];
 	
 	public function products()

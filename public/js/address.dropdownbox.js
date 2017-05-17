@@ -27,8 +27,7 @@ $(document).ready(function(){
 	});
 	
 	$("#regency_name").on("change", function(){
-	    $baseurl = window.location.origin?window.location.origin+'/':window.location.protocol+'/'+window.location.host+'/';
-		console.log($baseurl+ '/location/districts/' + $("#regency_name").val());
+	    $baseurl = window.location.origin?window.location.origin+'/':window.location.protocol+'/'+window.location.host+'/';		
 		$.getJSON( $baseurl + '/location/districts/' + $("#regency_name").val(), function( ) {
 			console.log( "success" );
 		})

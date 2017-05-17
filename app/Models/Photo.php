@@ -25,5 +25,6 @@ class Photo extends Model
 		'photo_1',
 		'photo_2',
 		'photo_3',
+		'mod_user',
 	];
 }

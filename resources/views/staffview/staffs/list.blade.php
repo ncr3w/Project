@@ -13,6 +13,13 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+				
+					@if (!empty($success))
+						<div class="alert alert-success alert-dismissible fade in" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+							</button><strong>{{$success}}</strong>
+						</div>
+					@endif
 					
                     <table id="datatable" class="table table-striped table-borderless">
                         <thead>
@@ -54,6 +61,7 @@
 								</td>
                                 <td>
                                     <a href="{{ route('staffs.edit', ['id' =>  $row->id ]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Edit"></i> Edit</a>
+									<a href="javascript;;" data-fancybox data-src="{{ route('staffs.password', ['id' =>  $row->id ]) }}" class="btn btn-warning btn-xs"><i class="fa fa-pencil" title="Password"></i> Edit Password</a>
                                     <a href="{{ route('staffs.show', ['id' =>  $row->id  ]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> Delete</a>
                                 </td>
                             </tr>  

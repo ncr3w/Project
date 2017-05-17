@@ -23,6 +23,8 @@ class Brand extends Model
      */
 	protected $fillable = [
 		'brand_name',
+		'mod_user',
+		'image',
 	];
 	
 	public function products()

@@ -44,11 +44,17 @@ class BrandsController extends Controller
     public function store(Request $request)
     {
 		$this->validate($request, [
-			'brand_name' => 'required|unique:brands,brand_name'
+			'brand_name' => 'required|unique:brands,brand_name',
+			'image' => 'required|image|mimes:jpg,jpeg,bmp,png|max:2000',
 		]);
+		
+		$temp1 = $request->image->store('public/images/brands');
+		$file1 = explode("/",$temp1);
 
 		$brand = Brand::create([
 			'brand_name' =>  $request->input('brand_name'),
+			'image' => $file1[3],
+			'mod_user' =>  \Auth::User()->name(),
 		]);
 	
         return redirect()->route('brands.index')->with('success', "$brand->brand_name berhasil ditambahkan.");
@@ -113,11 +119,21 @@ class BrandsController extends Controller
 
 			$this->validate($request, [
 				'brand_name' => 'required|unique:brands,brand_name,'.$id,
+				'image' => 'image|mimes:jpg,jpeg,bmp,png|max:2000',
 			]);
 
-            $brands = Brand::findOrFail($id);	
+            $brands = Brand::findOrFail($id);
+			
+			$file="";
+
+			if($request->hasFile('image')){
+				$temp = $request->photo_1->store('public/images/brands');
+				$file = explode("/",$temp);
+			}
 
 			$brands->brand_name = $request->input('brand_name');
+			$brands->mod_user = \Auth::user()->name;	
+			$brands->image = $file[3];
             $brands->save();
 		
 			return redirect()->route('brands.index')->with('success', "$brands->brand_name berhasil diubah.");
@@ -143,7 +159,8 @@ class BrandsController extends Controller
     {
 		 try{
             $brands = Brand::findOrFail($id);	
-
+			$brands->mod_user = \Auth::user()->name;	
+			$brands->save();
 			$brands->delete();
 		
 			return redirect()->route('brands.index')->with('success', "$brands->brand_name berhasil dihapus");

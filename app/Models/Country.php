@@ -22,7 +22,8 @@ class Regency extends Model
      * @var array
      */
 	protected $fillable = [
-		'country_name'
+		'country_name',
+		'mod_user',
 	];
 	
 	public function province()

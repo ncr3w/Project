@@ -25,15 +25,18 @@
 		<link href="{{asset('bower_components/gentelella/vendors/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet"/>
 		<!-- bootstrap-daterangepicker -->
 		<link href="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+		<!-- bootstrap-wysiwyg -->
+		<link href="{{asset('bower_components/gentelella/vendors/google-code-prettify/bin/prettify.min.css')}}" rel="stylesheet">		
 		
-		@stack('stylesheet')
-		
+		@stack('stylesheet')		
 
 		<!-- Custom Theme Style -->
 		<link href="{{asset('bower_components/gentelella/build/css/custom.min.css')}}" rel="stylesheet">
+		<!-- FancyBox -->
+		<link  href="{{asset('js/fancybox-3.0/dist/jquery.fancybox.min.css')}}" rel="stylesheet">
   </head>
 
-  <body class="nav-md">
+ <body class="nav-md">
 		<div class="container body">
 			<div class="main_container">
 				
@@ -93,13 +96,25 @@
 		<script src="{{asset('bower_components/gentelella/vendors/moment/min/moment.min.js')}}"></script>
 		<script src="{{asset('bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 		<!-- jquery.inputmask -->
-		<script src="{{asset('bower_components/gentelella/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
+		<script src="{{asset('bower_components/gentelella/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>		
+		<!-- Wysiwyg.js -->
+		<script src="{{asset('bower_components/gentelella/vendors/jquery.hotkeys/jquery.hotkeys.js')}}"></script>
+		<script src="{{asset('bower_components/gentelella/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js')}}"></script>
+		<script src="{{asset('bower_components/gentelella/vendors/google-code-prettify/src/prettify.js')}}"></script>
 
 		<!-- Custom Theme Scripts -->
 		<script src="{{asset('bower_components/gentelella/build/js/custom.min.js')}}"></script>
-			<!--LocationDropdown-->
-			<script src="{{asset('js/address.dropdownbox.js')}}"></script>
 		
+		<!--MyJS-->
+		<!-- FancyBox -->
+		<script src="{{asset('js/fancybox-3.0/dist/jquery.fancybox.min.js')}}"></script>	
+		<!-- MyScript -->
+		<script src="{{asset('js/address.dropdownbox.js')}}"></script>	
+		<script src="{{asset('js/user.check.js')}}"></script>
+		<script src="{{asset('js/column.js')}}"></script>
+		<!-- Blog Input -->
+		<script src="{{asset('js/blog.input.js')}}"></script>	
+	
 		@stack('script')
 	
   </body>

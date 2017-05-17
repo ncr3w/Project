@@ -48,7 +48,7 @@
 							@foreach($products as $row)
                             <tr>
 								
-								<td><img src="{{asset('storage/images/products/'.$row->photo->photo_1.'')}}" width="100" height="50"></td>
+								<td><img src="{{asset('storage/images/products/'.$row->photo->photo_1.'')}}" width="100" height="100"></td>
 								<td>{{ $row->product_name }}</td>
 								<td>{{ $row->brand->brand_name }}</td>
 								<td>{{ $row->division->division_name }}</td>

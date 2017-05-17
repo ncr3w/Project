@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Regency extends Model
+class District extends Model
 {
     use SoftDeletes;
 
@@ -23,7 +23,8 @@ class Regency extends Model
      */
 	protected $fillable = [
 		'id_regency', 	
-		'district_name'
+		'district_name',
+		'mod_user',
 	];
 	
 	public function regency()

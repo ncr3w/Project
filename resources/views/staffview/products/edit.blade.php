@@ -18,7 +18,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_name"> Nama Produk <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" value={{ $products->product_name }} id="product_name" name="product_name" class="form-control col-md-7 col-xs-12">
+                                <input type="text" value="{{ $products->product_name }}" id="product_name" name="product_name" class="form-control col-md-7 col-xs-12">
                                 @if ($errors->has('product_name'))
                                 <span class="help-block">{{ $errors->first('product_name') }}</span>
                                 @endif
@@ -67,7 +67,7 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="article">Artikel <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" value={{ $products->article }} id="article" name="article" class="form-control col-md-7 col-xs-12">
+								<input type="text" value="{{ $products->article }}" id="article" name="article" class="form-control col-md-7 col-xs-12">
 								@if ($errors->has('article'))
 								<span class="help-block">{{ $errors->first('article') }}</span>
 								@endif
@@ -78,7 +78,7 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">Warna <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" value={{ $products->color }} id="color" name="color" class="form-control col-md-7 col-xs-12">
+								<input type="text" value="{{ $products->color }}" id="color" name="color" class="form-control col-md-7 col-xs-12">
 								@if ($errors->has('color'))
 								<span class="help-block">{{ $errors->first('color') }}</span>
 								@endif
@@ -89,7 +89,7 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="alias">Alias <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" value={{ $products->alias }} id="alias" name="alias" class="form-control col-md-7 col-xs-12">
+								<input type="text" value="{{ $products->alias }}" id="alias" name="alias" class="form-control col-md-7 col-xs-12">
 								@if ($errors->has('alias'))
 								<span class="help-block">{{ $errors->first('alias') }}</span>
 								@endif
@@ -112,7 +112,7 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="retail_price">Harga Retail <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" value={{ $products->retail_price }} id="retail_price" name="retail_price" class="form-control col-md-7 col-xs-12">
+								<input type="text" value="{{ $products->retail_price }}" id="retail_price" name="retail_price" class="form-control col-md-7 col-xs-12">
 								@if ($errors->has('retail_price'))
 								<span class="help-block">{{ $errors->first('retail_price') }}</span>
 								@endif

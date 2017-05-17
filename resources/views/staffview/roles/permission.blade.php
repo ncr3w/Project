@@ -54,9 +54,9 @@
 								@if (count($permissions))
 									@foreach($permissions as $row)
 										@if($roles->hasPermission($row->name))
-											<div> <input name="permissions[]" type="checkbox" class="flat" checked value={{ $row->id }}>  {{ $row->display_name}}  ({{ $row->description }})</div>
+											<div> <input name="permissions[]" type="checkbox" class="flat" checked value="{{ $row->id }}">  {{ $row->display_name}}  ({{ $row->description }})</div>
 										@else
-											<div> <input name="permissions[]" type="checkbox" class="flat" value={{ $row->id }}>  {{ $row->display_name}}  ({{ $row->description }})</div>	
+											<div> <input name="permissions[]" type="checkbox" class="flat" value="{{ $row->id }}">  {{ $row->display_name}}  ({{ $row->description }})</div>	
 										@endif
 									@endforeach
 								@endif

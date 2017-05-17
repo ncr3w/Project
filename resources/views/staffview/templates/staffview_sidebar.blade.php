@@ -51,33 +51,33 @@
 			</ul>
 		  </li>
 		  
-		   <li><a><i class="fa fa-usd"></i> Transaction <span  class="label label-success pull-right">Belum jadi</span></a>
+		   <li><a><i class="fa fa-usd"></i> Transaction <span class="fa fa-chevron-down"></span></a>
 			<ul class="nav child_menu">
-			  <li><a href="{{route('products.index')}}">Waiting</a></li>
-			  <li><a href="{{route('products.index')}}">Tracking</a></li>
-			  <li><a href="{{route('brands.index')}}">Finished</a></li>
+			  <li><a href="{{route('invoices.index')}}">In-Progress</a></li>
+			  <li><a href="{{route('invoices.index_success')}}">Success</a></li>
+			  <li><a href="{{route('invoices.index_fail')}}">Fail</a></li>
 			</ul>
 		  </li>
 		  
-		   <li><a><i class="fa fa-shopping-cart"></i> Sales <span  class="label label-success pull-right">Belum jadi</span></a>
+		   <li><a><i class="fa fa-shopping-cart"></i> Store <span class="fa fa-chevron-down"></span></a>
 			<ul class="nav child_menu">
-			  <li><a href="{{route('products.index')}}">Asks</a></li>
-			  <li><a href="{{route('brands.index')}}">Bids</a></li>
-			  <li><a href="{{route('divisions.index')}}">Sales Graph</a></li>
+			  <li><a href="{{route('asks.index')}}">Asks</a></li>
+			  <li><a href="{{route('bids.index')}}">Bids</a></li>
+			  <li><a href="{{route('bids.index')}}">Sales Graph</a></li>
 			</ul>
 		  </li>	
 
-		  <li><a><i class="fa fa-book"></i> Site Content <span  class="label label-success pull-right">Belum jadi</span></a>
+		  <li><a><i class="fa fa-book"></i> Site Content <span class="fa fa-chevron-down"></span></a>
 			<ul class="nav child_menu">
-			  <li><a href="{{route('products.index')}}">Blog</a></li>
-			  <li><a href="{{route('brands.index')}}">Banner</a></li>
+			  <li><a href="{{route('blogs.index')}}">Blog</a></li>
+			  <li><a href="{{route('banners.index')}}">Banner</a></li>
 			</ul>
 		  </li>
 		  
-		<li><a><i class="fa fa-thumbs-down"></i> Complain <span  class="label label-success pull-right">Belum jadi</span></a>
+		<li><a><i class="fa fa-thumbs-down"></i> Complain <span class="fa fa-chevron-down"></span></a>
 			<ul class="nav child_menu">
-			  <li><a href="{{route('products.index')}}">In-Progress</a></li>
-			  <li><a href="{{route('brands.index')}}">Finished</a></li>
+			  <li><a href="{{route('tickets.index')}}">In-Progress</a></li>
+			  <li><a href="{{route('tickets.index_finished')}}">Finished</a></li>
 			</ul>
 		  </li>
 		  
@@ -89,9 +89,10 @@
 			</ul>
 		  </li>
 		  
-		  <li><a><i class="fa fa-balance-scale"></i> Balance <span  class="label label-success pull-right">Belum jadi</span></a>
+		  <li><a><i class="fa fa-balance-scale"></i> Balance <span class="fa fa-chevron-down"></span></a>
 			<ul class="nav child_menu">
-			  <li><a href="{{route('products.index')}}">Balance Details</a></li>
+			  <li><a href="{{route('payments.index')}}">Payment</a></li>
+			  <li><a href="{{route('debts.index')}}">Debt</a></li>
 			  <li><a href="{{route('brands.index')}}">Balance Graph</a></li>
 			</ul>
 		  </li>

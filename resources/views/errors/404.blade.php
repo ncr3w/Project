@@ -36,6 +36,7 @@
                             <h1 class="error-number">404</h1>
 							<h2>Page Not Found</h2>
                             <h3>Halaman yang anda cari tidak ditemukan</h3>
+							{{ \Request::route()->getName() }}
                     </div>
                 </div>
             </div>

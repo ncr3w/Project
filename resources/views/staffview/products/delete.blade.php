@@ -17,7 +17,7 @@
                     <form method="POST" action="{{ route('products.destroy', ['id' => $products->id]) }}">
                         <input type="hidden" name="_token" value="{{ Session::token() }}">
                         <input name="_method" type="hidden" value="DELETE">
-                        <button type="submit" class="btn btn-danger">Ya, Delete</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </div>
             </div>

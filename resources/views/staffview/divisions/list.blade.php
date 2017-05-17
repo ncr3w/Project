@@ -17,13 +17,15 @@
                     <table id="datatable" class="table table-striped table-borderless">
                         <thead>
                             <tr>
-                                <th>Nama Divisi</th>
+                                <th>Division Name</th>
+								<th>Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Nama Divisi</th>
+                                <th>Division Name</th>
+								<th>Image</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -32,6 +34,7 @@
 							@foreach($divisions as $row)
                             <tr>
                                 <td>{{ $row->division_name }}</td>
+								<td><img src="{{asset('storage/images/divisions/'.$row->image.'')}}" width="100" height="100"></td>
                                 <td>
                                     <a href="{{ route('divisions.edit', ['id' =>  $row->id ]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Edit"></i> Edit</a>
                                     <a href="{{ route('divisions.show', ['id' =>  $row->id  ]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> Delete</a>

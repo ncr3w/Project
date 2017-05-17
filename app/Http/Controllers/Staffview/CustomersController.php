@@ -55,11 +55,21 @@ class CustomersController extends Controller
     public function store(Request $request)
     {
 		$this->validate($request, [
-			'name' => 'required|unique:customers,name'
+			'name' => 'required',
+			'email' => 'required|unique:users,email',
+			'date_of_birth' => 'required|date',
+			'gender' => 'required|boolean',
+			'phone' => 'required|integer',	
+			'password' => 'required|confirmed',			
 		]);
 
-		$User = User::create([
+		$user = User::create([
 			'name' =>  $request->input('name'),
+			'email' => $request->input('email'),
+			'date_of_birth' => $request->input('date_of_birth'),
+			'gender' => $request->input('gender'),
+			'phone' => $request->input('phone'),			
+			'password' => bcrypt('password'),
 		]);
 	
         return redirect()->route('customers.index')->with('success', "$User->name berhasil ditambahkan.");
@@ -123,12 +133,20 @@ class CustomersController extends Controller
 		try{
 
 			$this->validate($request, [
-				'name' => 'required|unique:customers,name,'.$id,
+				'name' => 'required',
+				'email' => 'required|unique:users,email,'.$id,
+				'date_of_birth' => 'required|date',
+				'gender' => 'required|boolean',
+				'phone' => 'required|integer',	
 			]);
 
             $customers = User::findOrFail($id);	
 
 			$customers->name = $request->input('name');
+			$customers->email  = $request->input('email');
+			$customers->date_of_birth  = $request->input('date_of_birth');
+			$customers->gender  = $request->input('gender');
+			$customers->phone  = $request->input('phone');	
             $customers->save();
 		
 			return redirect()->route('customers.index')->with('success', "$customers->name berhasil diubah.");
@@ -167,4 +185,53 @@ class CustomersController extends Controller
             }
         }
     }
+	
+	 /**
+     * Display a listing of the balance for a user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function balance($id)
+    {
+		// get all the items
+		 try{
+            $customers = User::findOrFail($id);	
+			$balance = array();
+			$total = 0.0;
+			
+			foreach($customers->balance_in as $row){
+				$temp = [
+					$row,
+					'in',
+				];
+				$total = $total + $row->amount;
+				array_push($balance,$temp);
+			}
+			
+			foreach($customers->balance_out as $row){
+				$temp = [
+					$row,
+					'out',
+				];
+				$total = $total - $row->amount;
+				array_push($balance,$temp);
+			}
+			
+			$params = [
+				'balances' => $balance,
+				'total' => $total,
+			];
+			
+		// load the view and pass the items 
+        return view('staffview.customers.balance')
+			->with($params);;
+		}
+		catch (ModelNotFoundException $ex) 
+        {
+            if ($ex instanceof ModelNotFoundException)
+            {
+                return response()->view('errors.'.'404');
+            }
+        }
+	}
 }

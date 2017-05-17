@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Staffview;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Ask;
+use App\Models\Bid;
 use App\Models\Brand;
 use App\Models\Division;
 use App\Models\Photo;
@@ -20,13 +22,18 @@ class ProductsController extends Controller
     public function index()
     {
 		// get all the items
-        $products = Product::all();
-
+        $products = Product::orderBy('number_sold', 'DESC')->take(4)->get();
+		$recent_asks = Ask::->orderBy('created_at', 'DESC')->take(4)->get();
+		
+		$params = [
+            'popular' => $popular,
+            'recent_ask' => $recent_ask,
+		];
 
         // load the view and pass the items        
 
         return view('staffview.products.list')
-			->with('products', $products);
+			->with($params);
     }
 
     /**
@@ -64,7 +71,7 @@ class ProductsController extends Controller
 			'product_name' => 'required',
 			'alias' => 'required',
 			'color' => 'required',
-			'retail_price' => 'required',
+			'retail_price' => 'required|integer',
 			'photo_1' => 'required|image|mimes:jpg,jpeg,bmp,png|max:2000',
 			'photo_2' => 'required|image|mimes:jpg,jpeg,bmp,png|max:2000',
 			'photo_3' => 'required|image|mimes:jpg,jpeg,bmp,png|max:2000',
@@ -81,6 +88,7 @@ class ProductsController extends Controller
 			'photo_1' => $file1[3],
 			'photo_2' => $file2[3],
 			'photo_3' => $file3[3],
+			'mod_user' =>  \Auth::User()->name(),
 		])->id;
 		
 		$product = Product::create([
@@ -93,6 +101,7 @@ class ProductsController extends Controller
 			'id_brand' => $request->input('brand_name'),
 			'id_division' => $request->input('division_name'),
 			'id_photo' => $photo,
+			'mod_user' =>  \Auth::User()->name(),
 		]);
 	
         return redirect()->route('products.index')->with('success', "$product->product_name berhasil ditambahkan.");
@@ -185,6 +194,7 @@ class ProductsController extends Controller
 				$temp = $request->photo_1->store('public/images/products');
 				$file = explode("/",$temp);
 				$photo->photo_1 = $file[3];
+				$photo->mod_user = \Auth::user()->name;
 				$photo->save();
 			}
 
@@ -192,6 +202,7 @@ class ProductsController extends Controller
 				$temp = $request->photo_2->store('public/images/products');
 				$file = explode("/",$temp);
 				$photo->photo_2 = $file[3];
+				$photo->mod_user = \Auth::user()->name;
 				$photo->save();
 			}  
 			
@@ -199,6 +210,7 @@ class ProductsController extends Controller
 				$temp = $request->photo_3->store('public/images/products');
 				$file = explode("/",$temp);
 				$photo->photo_3 = $file[3];
+				$photo->mod_user = \Auth::user()->name;	
 				$photo->save();
 			}  
 
@@ -209,7 +221,8 @@ class ProductsController extends Controller
 			$products->retail_price = $request->input('retail_price');
 			$products->gender = $request->input('gender');
 			$products->id_brand = $request->input('brand_name');
-			$products->id_division = $request->input('division_name');			
+			$products->id_division = $request->input('division_name');
+			$products->mod_user = \Auth::user()->name;	
             $products->save();
 		
 			return redirect()->route('products.index')->with('success', "$products->product_name berhasil diubah.");
@@ -221,8 +234,7 @@ class ProductsController extends Controller
                 return response()->view('errors.'.'404');
             }
         }
-    }
-        
+    }        
     
 
     /**

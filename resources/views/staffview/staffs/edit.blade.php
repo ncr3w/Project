@@ -7,172 +7,191 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Edit Brand <a href="{{route('products.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Kembali </a></h2>
+                    <h2>Edit Staff <a href="{{route('staffs.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
                     <div class="clearfix"></div>
                 </div>
-     <div class="x_content">
+                <div class="x_content">
                     <br />
-                    <form method="post" action="{{ route('products.update', ['id' => $products->id]) }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">                     
+                    <form method="post" action="{{ route('staffs.store') }}" data-parsley-validate class="form-horizontal form-label-left">                     
 
-                        <div class="form-group{{ $errors->has('product_name') ? ' has-error' : '' }}">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_name"> Nama Produk <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" value={{ $products->product_name }} id="product_name" name="product_name" class="form-control col-md-7 col-xs-12">
-                                @if ($errors->has('product_name'))
-                                <span class="help-block">{{ $errors->first('product_name') }}</span>
-                                @endif
-                            </div>
-                        </div>
-						
-						<div class="form-group{{ $errors->has('brand_name') ? ' has-error' : '' }}">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand_name">Brand <span class="required">*</span>
+						<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> Name  <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <select id="brand_name" name="brand_name" class="form-control col-md-7 col-xs-12">
-									@foreach($brands as $row)
-										@if( $products->brand->id == $row->id )
-											<option value="{{ $row->id }}" selected >{{ $row->brand_name }}</option>
-										@else
-											<option value="{{ $row->id }}">{{ $row->brand_name }}</option>
-										@endif
-									@endforeach
-							  </select>
-								@if ($errors->has('brand_name'))
-									<span class="help-block">{{ $errors->first('brand_name') }}</span>
+								<input type="text" value="{{ $staffs->name }}" id="name" name="name" class="form-control col-md-7 col-xs-12">
+								@if ($errors->has('name'))
+								<span class="help-block">{{ $errors->first('name') }}</span>
 								@endif
 							</div>
 						</div>
 						
-						<div class="form-group{{ $errors->has('division_name') ? ' has-error' : '' }}">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="division_name">Divisi <span class="required">*</span>
+						<div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone"> Phone <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <select id="division_name" name="division_name" class="form-control col-md-7 col-xs-12">
-									@foreach($divisions as $row)
-										@if($products->division->id == $row->id  )
-											<option value="{{ $row->id }}" selected >{{ $row->division_name }}</option>
-										@else
-											<option value="{{ $row->id }}">{{ $row->division_name }}</option>
-										@endif
-									@endforeach
-							  </select>
-								@if ($errors->has('division_name'))
-									<span class="help-block">{{ $errors->first('division_name') }}</span>
+								<input type="text" value="{{ $staffs->phone }}" id="phone" name="phone" class="form-control col-md-7 col-xs-12">
+								@if ($errors->has('phone'))
+								<span class="help-block">{{ $errors->first('phone') }}</span>
 								@endif
 							</div>
 						</div>
 						
-						<div class="form-group{{ $errors->has('article') ? ' has-error' : '' }}">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="article">Artikel <span class="required">*</span>
+						<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email"> Email  <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" value={{ $products->article }} id="article" name="article" class="form-control col-md-7 col-xs-12">
-								@if ($errors->has('article'))
-								<span class="help-block">{{ $errors->first('article') }}</span>
+								<input type="text" value="{{ $staffs->email }}" id="email" name="email" class="form-control col-md-7 col-xs-12">
+								@if ($errors->has('email'))
+								<span class="help-block">{{ $errors->first('email') }}</span>
 								@endif
 							</div>
-						</div>
-						
-						<div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="color">Warna <span class="required">*</span>
-							</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" value={{ $products->color }} id="color" name="color" class="form-control col-md-7 col-xs-12">
-								@if ($errors->has('color'))
-								<span class="help-block">{{ $errors->first('color') }}</span>
-								@endif
-							</div>
-						</div>
-						
-						<div class="form-group{{ $errors->has('alias') ? ' has-error' : '' }}">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="alias">Alias <span class="required">*</span>
-							</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" value={{ $products->alias }} id="alias" name="alias" class="form-control col-md-7 col-xs-12">
-								@if ($errors->has('alias'))
-								<span class="help-block">{{ $errors->first('alias') }}</span>
-								@endif
-							</div>
-						</div>
-						
+						</div>						
+					
 						<div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Gender <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<label class="radio-inline"><input type="radio" name="gender" @if( $products->gender == '0') checked @endif value="0">Male</label>
-								<label class="radio-inline"><input type="radio" name="gender" @if( $products->gender == '1') checked @endif value="1">Female</label>
-								@if ($errors->has('retail_price'))
+								<label class="radio-inline"><input type="radio" name="gender" class="flat" @if( $staffs->gender == '0') checked @endif value="0">Male</label>
+								<label class="radio-inline"><input type="radio" name="gender" class="flat" @if( $staffs->gender == '1') checked @endif value="0">Female</label>
+								@if ($errors->has('gender'))
 								<span class="help-block">{{ $errors->first('gender') }}</span>
 								@endif
 							</div>
 						</div>
 						
-						<div class="form-group{{ $errors->has('retail_price') ? ' has-error' : '' }}">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="retail_price">Harga Retail <span class="required">*</span>
+						<div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="date_of_birth">Tanggal Lahir <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" value={{ $products->retail_price }} id="retail_price" name="retail_price" class="form-control col-md-7 col-xs-12">
-								@if ($errors->has('retail_price'))
-								<span class="help-block">{{ $errors->first('retail_price') }}</span>
+								<input type="text" value="{{ $staffs->date_of_birth }}" id="date_of_birth" name="date_of_birth" class="form-control col-md-7 col-xs-12"  data-inputmask="'mask': '9999-99-99'">
+								@if ($errors->has('date_of_birth'))
+								<span class="help-block">{{ $errors->first('date_of_birth') }}</span>
 								@endif
 							</div>
 						</div>
 						
+						<div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="role">Role <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <select id="role" name="role" class="form-control col-md-7 col-xs-12">
+							  <option value="" selected disabled >--Select Role--</option>
+									@foreach($roles as $row)
+										@if($row->id == 1 || $row->id ==2)
+											@if($staffs->hasRole($row->name))
+												<option value="{{ $row->id }}" selected >{{ $row->display_name }}</option>
+											@else
+												<option value="{{ $row->id }}">{{ $row->display_name }}</option>
+											@endif
+										@endif	
+									@endforeach
+							  </select>
+								@if ($errors->has('role'))
+									<span class="help-block">{{ $errors->first('role') }}</span>
+								@endif
+							</div>
+						</div>	
 						
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="photo_1">Foto 1 </label>
-							<img src="{{asset('storage/images/products/'.$products->photo->photo_1.'')}}" width="150" height="75">
-						</div>							
+						<div>
+							<label class="control-label col-md-12 col-sm-12 col-xs-12"><h3 class="text-center col-md-6 col-sm-6 col-xs-12">Address</h3></label>
+						</div>
 						
-						<div class="form-group{{ $errors->has('photo_1') ? ' has-error' : '' }}">
-							<label class="control-label" for="photo_1">Ubah  </label>
-							<div class="col-md-9 col-sm-9 col-xs-12">
-								<input type="file" name="photo_1" id="photo_1" class="file"> 
-								@if ($errors->has('photo_1'))
-								<span class="help-block">{{ $errors->first('photo_1') }}</span>
+						<div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="address"> Address  <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="textbox" value="{{ $address->address }}" id="address" name="address" class="form-control col-md-7 col-xs-12">
+								@if ($errors->has('address'))
+								<span class="help-block">{{ $errors->first('address') }}</span>
+								@endif
+							</div>
+						</div>	
+						
+						<div class="form-group{{ $errors->has('phone_address') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="address"> Phone Address <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="textbox" value="{{ $address->phone }}" id="phone_address" name="phone_address" class="form-control col-md-7 col-xs-12">
+								@if ($errors->has('phone_address'))
+								<span class="help-block">{{ $errors->first('phone_address') }}</span>
+								@endif
+							</div>
+						</div>	
+						
+						<div class="form-group{{ $errors->has('postal_code') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="postal_code"> Postal Code  <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="textbox" value="{{ $address->postal_code }}" id="postal_code" name="postal_code" class="form-control col-md-7 col-xs-12">
+								@if ($errors->has('postal_code'))
+								<span class="help-block">{{ $errors->first('postal_code') }}</span>
+								@endif
+							</div>
+						</div>	
+
+						<div class="form-group{{ $errors->has('province_name') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="province_name">Province <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <select id="province_name_" name="province_name" class="form-control col-md-7 col-xs-12">
+									@foreach($provinces as $row)										
+										@if($row->id == $provid)
+											<option value="{{ $row->id }}" selected>{{ $row->province_name }}</option>
+										@else
+											<option value="{{ $row->id }}">{{ $row->province_name }}</option>
+										@endif
+									@endforeach
+							  </select>
+								@if ($errors->has('province_name'))
+									<span class="help-block">{{ $errors->first('province_name') }}</span>
+								@endif
+							</div>
+						</div>	
+						
+						<div class="form-group{{ $errors->has('regency_name') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="regency_name">Regency <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">		
+							  <select id="regency_name_" name="regency_name" class="form-control col-md-7 col-xs-12">
+								@foreach($regencies as $row)
+									@if($row->id == $regid)
+										<option value="{{ $row->id }}" selected>{{ $row->regency_name }}</option>
+									@else
+										<option value="{{ $row->id }}">{{ $row->regency_name }}</option>
+									@endif
+								@endforeach
+							  </select>
+								@if ($errors->has('regency_name'))
+									<span class="help-block">{{ $errors->first('regency_name') }}</span>
 								@endif
 							</div>
 						</div>
 						
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="photo_1">Foto 2 </label>
-							<img src="{{asset('storage/images/products/'.$products->photo->photo_2.'')}}" width="150" height="75">
-						</div>
-						
-						<div class="form-group{{ $errors->has('photo_2') ? ' has-error' : '' }}">
-							<label class="control-label" for="photo_2">Ubah </label>
-							<div class="col-md-9 col-sm-9 col-xs-12">
-								<input type="file" name="photo_2" id="photo_2" class="file"> 
-								@if ($errors->has('photo_2'))
-								<span class="help-block">{{ $errors->first('photo_2') }}</span>
+						<div class="form-group{{ $errors->has('district_name') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="district_name">Distrcit <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <select id="district_name_" name="district_name" class="form-control col-md-7 col-xs-12">													
+									@foreach($districts as $row)
+										@if($row->id == $distid)
+											<option value="{{ $row->id }}" selected>{{ $row->district_name }}</option>
+										@else
+											<option value="{{ $row->id }}">{{ $row->district_name }}</option>
+										@endif
+									@endforeach
+							  </select>
+								@if ($errors->has('district_name'))
+									<span class="help-block">{{ $errors->first('district_name') }}</span>
 								@endif
 							</div>
 						</div>
-						
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="photo_1">Foto 3 </label>
-							<img src="{{asset('storage/images/products/'.$products->photo->photo_3.'')}}" width="150" height="75">
-						</div>
-						
-						<div class="form-group{{ $errors->has('photo_3') ? ' has-error' : '' }}">
-							
-							<div class="col-md-9 col-sm-9 col-xs-12">
-								<label class="control-label" for="photo_3">Ubah  </label>
-								<input type="file" name="photo_3" id="photo_3" class="file"> 
-								@if ($errors->has('photo_3'))
-								<span class="help-block">{{ $errors->first('photo_3') }}</span>
-								@endif
-							</div>
-						</div>
-						
+											
                         <div class="ln_solid"></div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <input type="hidden" name="_token" value="{{ Session::token() }}">
-                                <input name="_method" type="hidden" value="PUT">
-                                <button type="submit" class="btn btn-success">Simpan</button>
+                                <button type="submit" class="btn btn-success">Add Staff</button>
                             </div>
                         </div>
                     </form>

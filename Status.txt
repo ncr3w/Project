@@ -1,0 +1,23 @@
+Invoice
+
+'Pending',
+'Process',
+'Complain',
+'Shipped',
+'Success',
+'Failed'
+
+Invoice_Detail
+
+'Waiting for Receipt',
+'Waiting for Verification',
+'Shipped',
+'Success',
+'Failed'
+
+Payment
+
+'Wating for Payment',
+'Wating for Verification',
+'Accepted',
+'Rejected'

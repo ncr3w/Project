@@ -23,7 +23,8 @@ class Regency extends Model
      */
 	protected $fillable = [
 		'id_province', 	
-		'regency_name'
+		'regency_name',
+		'mod_user',
 	];
 	
 	public function province()

@@ -29,7 +29,7 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone"> Telepon  <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" value="{{ Request::old('phone') ?: '' }}" id="phone" phone="phone" class="form-control col-md-7 col-xs-12">
+								<input type="text" value="{{ Request::old('phone') ?: '' }}" id="phone" name="phone" class="form-control col-md-7 col-xs-12">
 								@if ($errors->has('phone'))
 								<span class="help-block">{{ $errors->first('phone') }}</span>
 								@endif
@@ -40,18 +40,40 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email"> Email  <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" value="{{ Request::old('email') ?: '' }}" id="email" email="email" class="form-control col-md-7 col-xs-12">
+								<input type="text" value="{{ Request::old('email') ?: '' }}" id="email" name="email" class="form-control col-md-7 col-xs-12">
 								@if ($errors->has('email'))
 								<span class="help-block">{{ $errors->first('email') }}</span>
 								@endif
 							</div>
-						</div>						
+						</div>	
+
+						<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="password"> Password  <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="password" value="" id="password" name="password" class="form-control col-md-7 col-xs-12">
+								@if ($errors->has('password'))
+								<span class="help-block">{{ $errors->first('password') }}</span>
+								@endif
+							</div>
+						</div>	
+						
+						<div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="password_confirmation"> Confirm Password  <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="password" value="" id="password_confirmation" name="password_confirmation" class="form-control col-md-7 col-xs-12">
+								@if ($errors->has('password_confirmation'))
+								<span class="help-block">{{ $errors->first('password_confirmation') }}</span>
+								@endif
+							</div>
+						</div>	
 					
 						<div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="gender">Gender <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<label class="radio-inline"><input type="radio" name="gender" class="flat" @if(Request::old('gender')) == '0'  checked @endif value="0"> Male</label>
+								<label class="radio-inline"><input type="radio" name="gender" class="flat" @if(Request::old('gender')) == '0')  checked @endif value="0"> Male</label>
 								<label class="radio-inline"><input type="radio" name="gender" class="flat" @if(Request::old('gender')) == '1')  checked @endif value="1"> Female</label>
 								@if ($errors->has('gender'))
 								<span class="help-block">{{ $errors->first('gender') }}</span>
@@ -77,11 +99,13 @@
 							  <select id="role" name="role" class="form-control col-md-7 col-xs-12">
 							  <option value="" selected disabled >--Select Role--</option>
 									@foreach($roles as $row)
-										@if(Request::old('role')) == $row->id )
-											<option value="{{ $row->id }}" selected >{{ $row->display_name }}</option>
-										@else
-											<option value="{{ $row->id }}">{{ $row->display_name }}</option>
-										@endif
+										@if($row->id == 1 || $row->id ==2)
+											@if(Request::old('role') == $row->id )
+												<option value="{{ $row->id }}" selected >{{ $row->display_name }}</option>
+											@else
+												<option value="{{ $row->id }}">{{ $row->display_name }}</option>
+											@endif
+										@endif	
 									@endforeach
 							  </select>
 								@if ($errors->has('role'))
@@ -98,9 +122,20 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="address"> Address  <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="textbox" value="{{ Request::old('address') ?: '' }}" id="address" address="address" class="form-control col-md-7 col-xs-12">
+								<input type="textbox" value="{{ Request::old('address') ?: '' }}" id="address" name="address" class="form-control col-md-7 col-xs-12">
 								@if ($errors->has('address'))
 								<span class="help-block">{{ $errors->first('address') }}</span>
+								@endif
+							</div>
+						</div>	
+						
+						<div class="form-group{{ $errors->has('phone_address') ? ' has-error' : '' }}">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="address"> Phone Address <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="textbox" value="{{ Request::old('phone_address') ?: '' }}" id="phone_address" name="phone_address" class="form-control col-md-7 col-xs-12">
+								@if ($errors->has('phone_address'))
+								<span class="help-block">{{ $errors->first('phone_address') }}</span>
 								@endif
 							</div>
 						</div>	
@@ -109,7 +144,7 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="postal_code"> Postal Code  <span class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="textbox" value="{{ Request::old('postal_code') ?: '' }}" id="postal_code" postal_code="postal_code" class="form-control col-md-7 col-xs-12">
+								<input type="textbox" value="{{ Request::old('postal_code') ?: '' }}" id="postal_code" name="postal_code" class="form-control col-md-7 col-xs-12">
 								@if ($errors->has('postal_code'))
 								<span class="help-block">{{ $errors->first('postal_code') }}</span>
 								@endif
@@ -123,11 +158,7 @@
 							  <select id="province_name" name="province_name" class="form-control col-md-7 col-xs-12">
 							  <option value="" selected disabled >--Select Province--</option>
 									@foreach($provinces as $row)
-										@if(Request::old('province_name')) == $row->id )
-											<option value="{{ $row->id }}" selected >{{ $row->province_name }}</option>
-										@else
-											<option value="{{ $row->id }}">{{ $row->province_name }}</option>
-										@endif
+										<option value="{{ $row->id }}">{{ $row->province_name }}</option>
 									@endforeach
 							  </select>
 								@if ($errors->has('province_name'))

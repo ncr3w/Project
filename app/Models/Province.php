@@ -23,7 +23,8 @@ class Province extends Model
      */
 	protected $fillable = [
 		'id_country', 	
-		'province_name'
+		'province_name',
+		'mod_user',
 	];
 	
 	public function country()

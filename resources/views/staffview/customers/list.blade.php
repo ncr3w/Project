@@ -13,6 +13,13 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+				
+					@if (!empty($success))
+						<div class="alert alert-success alert-dismissible fade in" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+							</button><strong>{{$success}}</strong>
+						</div>
+					@endif
 					
                     <table id="datatable" class="table table-striped table-borderless">
                         <thead>
@@ -20,9 +27,9 @@
 							<th>Nama</th>
 							<th>Telepon</th>
 							<th>Email</th>
-							<th>Gender</th>
-							<th>Tanggal Lahir</th>
-							<th>Role</th>
+							<th>Address</th>
+							<th>Balance</th>
+							<th>Transaction</th>
 							<th>Action</th>
                             </tr>
                         </thead>
@@ -31,9 +38,9 @@
 							<th>Nama</th>
 							<th>Telepon</th>
 							<th>Email</th>
-							<th>Gender</th>
-							<th>Tanggal Lahir</th>
-							<th>Role</th>
+							<th>Address</th>
+							<th>Balance</th>
+							<th>Transaction</th>
 							<th>Action</th>
                             </tr>
                         </tfoot>
@@ -44,11 +51,21 @@
 								<td>{{ $row->name }}</td>
 								<td>{{ $row->phone }}</td>
 								<td>{{ $row->email }}</td>
-								<td>@if ( $row->gender == 0) Male @else Female @endif</td>
-								<td>{{ $row->date_of_birth }}</td>
-								<td>@foreach($row->roles as $row2) {{ $row2->display_name }} @endforeach </td>
+								<td>
+									@foreach($row->address as $row2)
+										<a data-fancybox data-src="{{ route('address.show', ['id' =>  $row2->id ]) }}" class="btn btn-success btn-xs" href="javascript:;"><i class="fa fa-search" title="Address"></i> {{ $row2->name }}</a>						
+									@endforeach 
+									 <a href="{{ route('address.create') }}" class="btn btn-info btn-xs"><i class="fa fa-plus" title="Edit"></i> Add</a>
+								</td>
+								<td>
+									<a href="{{ route('customers.balance', ['id' =>  $row->id ]) }}" class="btn btn-success btn-xs"><i class="fa fa-search" title="Balance"></i> Balance</a>
+								</td>
+								<td>
+									<a href="{{ route('invoices.index_user', ['id' =>  $row->id ]) }}" class="btn btn-success btn-xs"><i class="fa fa-search" title="Invoice"></i> Transaction</a>
+								</td>
                                 <td>
                                     <a href="{{ route('customers.edit', ['id' =>  $row->id ]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Edit"></i> Edit</a>
+									<a href="javascript;;" data-fancybox data-src="{{ route('staffs.password', ['id' =>  $row->id ]) }}" class="btn btn-warning btn-xs"><i class="fa fa-pencil" title="Password"></i> Edit Password</a>
                                     <a href="{{ route('customers.show', ['id' =>  $row->id  ]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> Delete</a>
                                 </td>
                             </tr>  

@@ -36,6 +36,7 @@ class Product extends Model
 		'avg_price_used',
 		'number_of_view',
 		'release_date',
+		'mod_user',
 	];
 	
 	public function brand()
