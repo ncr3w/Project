@@ -35,4 +35,9 @@ class HomeController extends Controller
         return view('user_home')
 			->with($params);
     }
+	
+	public function register()
+	{
+		return view('webpage.auth.register');
+	}
 }

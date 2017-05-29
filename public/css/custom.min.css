@@ -1,48 +1,45 @@
+.image_full{
+   display:block !important;;
+  }
 
-@media screen and (max-width:768px){
-    .navbar-static-top{
-        display:none;
-    }
-}
-
-@media (min-width: 768px) {
-  #navbar-search {
-    position: absolute;
-    width: 35%;
-	left: 50%;
-    transform: translatex(-50%);
-  }  
-}
-
+ .image_mobile{
+  display:none !important;;
+ }
 
 html,body
 {
+    overflow-x: hidden;
+
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden; 
 }
 
 body {
   position: relative;
+
+  min-height: 100%;
   margin: 0;
   padding-bottom: 6rem;
-  min-height: 100%;
+
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 html {
-  height: 100%;
   box-sizing: border-box;
+  height: 100%;
 }
 
 div.caption {
     position: absolute;
     top: 80%;
     left: 0;
+
     width: 100%;
+
 	color: white !important;
 	background: rgba(0,0,0,0.25);
-	font-size: 20;	
+
+	font-size: 20;
 }
 
 img {
@@ -63,22 +60,28 @@ img {
 }
 
 .image {
-  opacity: 1;
   display: block;
+
   width: 100%;
   height: auto;
+
   transition: .5s ease;
+
+  opacity: 1;
+
   backface-visibility: hidden;
 }
 
 .middle {
-  transition: .5s ease;
-  opacity: 0;
   position: absolute;
   top: 50%;
   left: 50%;
+
+  transition: .5s ease;
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%)
+
+  opacity: 0;
 }
 
 .thumbnail:hover .image {
@@ -90,61 +93,183 @@ img {
 }
 
 .text {
-  background-color: #4CAF50;
-  color: white;
-  font-size: 16px;
   padding: 16px 32px;
+
+  color: white;
+  background-color: #4CAF50;
+
+  font-size: 16px;
 }
 
 .square {
-    height: 150px;
     width: 150px;
+    height: 150px;
 }
 
 #footer{
-	background-color : black !important;
-	width: 100vw;
 	position: absolute;
 	right: 0;
 	bottom: 0;
 	left: 0;
+
+	width: 100vw;
 	padding: 1rem;
+
 	text-align: center;
+
+	background-color : black !important;
+}
+
+@font-face {
+    font-family: Sansation_Bold;
+
+    src: url('/fonts/sansation/Sansation_Bold.ttf');
+}
+
+@font-face {
+    font-family: Sansation_Regular;
+
+    src: url('/fonts/sansation/Sansation_Regular.ttf');
 }
 
 h1 {
-	font-family: 'Allan', Helvetica, Arial, sans-serif;
-	font-size: 35px;
-	line-height: 37px;
+	font-family: 'Sansation_Bold', Helvetica, Arial, sans-serif;
 }
 
 h2 {
-	font-family: 'Allan', Helvetica, Arial, sans-serif;
-	font-size: 24px;
-	line-height:  26px;
+	font-family: 'Sansation_Bold', Helvetica, Arial, sans-serif;
 }
 
 h3 {
-	font-family: 'Allan', Helvetica, Arial, sans-serif;
-	font-size: 19px;
-	line-height: 21px;
+	font-family: 'Sansation_Bold', Helvetica, Arial, sans-serif;
 }
 
 h4 {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-	font-size: 19px;
-	line-height: 21px;
+	font-family: 'Sansation_Regular', Helvetica, Arial, sans-serif;
 }
- 
+
 p {
-	font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-	font-size: 17px;
-	line-height: 19px;
+	font-family: 'Sansation_Regular', Helvetica, Arial, sans-serif;
 }
 
+a {
+	font-family: 'Sansation_Regular', Helvetica, Arial, sans-serif;
+}
 
+#login-dp{
+    overflow:hidden;
 
+    min-width: 250px;
+    padding: 14px 14px 0;
 
-	
+    background-color:rgba(255,255,255,1);
+}
+#login-dp .help-block{
+    font-size:12px
+}
+#login-dp .bottom{
+    clear:both;
 
+    padding:14px;
 
+    border-top:1px solid #ddd;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .social-buttons{
+    margin:12px 0
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        color: #fff;
+        background-color: inherit;
+    }
+    #login-dp .bottom{
+        border-top:0 none;
+        background-color: inherit;
+    }
+}
+
+hr {
+    height: 1px;
+    /* Set the hr color */
+
+    color: #333; /* old IE */
+    border: none;
+    background-color: #333; /* Modern Browsers */
+}
+
+@media (min-width: 768px) {
+  #navbar-search {
+    position: absolute;
+	  left: 50%;
+
+    width: 35%;
+
+    transform: translatex(-50%);
+  }
+}
+
+@media screen and (max-width:768px){
+    .navbar-static-top{
+        display:none;
+    }
+    .image_full{
+      display:none !important;;
+    }
+
+    .image_mobile{
+       display:block !important;;
+    }
+    body{
+      padding: 50px;
+  }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+  .navbar-static-top{
+      display:none;
+  }
+  .image_full{
+   display:none !important;
+  }
+
+  .image_mobile{
+   display:block !important;
+  }
+
+  .div_full{
+    display:none;
+  }
+
+  .breadcrumb{
+    display:none !important;
+  }
+  .container {
+     width: 100%; padding: 0px
+   }
+}

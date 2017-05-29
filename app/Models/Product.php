@@ -38,19 +38,27 @@ class Product extends Model
 		'release_date',
 		'mod_user',
 	];
-	
+
 	public function brand()
 	{
 		return $this->belongsTo('App\Models\Brand','id_brand');
 	}
-	
+
 	public function division()
 	{
 		return $this->belongsTo('App\Models\Division','id_division');
 	}
-	
+
 	public function photo()
 	{
 		return $this->hasOne('App\Models\Photo','id','id_photo');
 	}
+	public function ask()
+	{
+		return $this->hasMany('App\Models\Ask','id','id_product');
+	}
+
+  public function sizes(){
+    return $this->hasMany('App\Models\Size,id_brand,id_brand')->where('gender','=','gender');
+  }
 }

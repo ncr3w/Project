@@ -2,20 +2,30 @@
 @section('content')
 
 @include('webpage.layout.webpage_header')
+@include('webpage.layout.webpage_header_2')
 
-	@foreach($asks as $row)				
-			@if($row->type == 'Used')
+<div class="container">
+	<div class="row">
+		<h2>Produk Baru</h2>
+		<hr />
+	</div>
+	<div class="row">
+			<div class="col-md-3 col-sm-3 div_full">
+				<p>	Filter	</p>
+				<hr />
+				<p>	Brand	</p>
+				<p> Gender </p>aaa
+				<p>	Size </p>
+				<p>	Price	</p>
+			</div>
+			<div class="col-md-9 col-sm-9">
+			@foreach($result as $row)
 				<div class="col-md-3 col-sm-3 col-xs-6">
-					<a href ="{{ route('product.used', ['name' =>  $row->product->product_name, 'article' => $row->product->article, 'id' => $row->id ]) }}"><img src="{{asset('storage/images/products/'.$row->product->photo->photo_1.'')}}" width="100" height="100" alt="{{ $row->product->product_name }}" title="{{ $row->product->product_name }}" class="image"></a>
-					@if($row->type == 'Used')<span class="label label-success">Bekas</span>@endif
-					<h4 class="text-center">{{ $row->product->product_name }}</h4>		
-					<p class="text-center">IDR {{ number_format($row->amount,2) }}</p>
-				</div>		
-			@else
-				<div class="col-md-3 col-sm-3 col-xs-6">		
-					<a href ="{{ route('product.new', ['name' =>  $row->product->product_name, 'article' => $row->product->article]) }}"><img src="{{asset('storage/images/products/'.$row->product->photo->photo_1.'')}}" width="100" height="100" alt="{{ $row->product_name }}" title="{{ $row->product_name }}" class="image"></a>
-					<h4 class="text-center">{{ $row->product->product_name }}</h4>
+					<a href ="{{ route('product.new', ['name' =>  $row->product_name, 'article' => $row->article]) }}"><img src="{{asset('storage/images/products/'.$row->photo_1.'')}}" width="100" height="100" alt="{{ $row->product_name }}" title="{{ $row->product_name }}" class="image"></a>
+					<h4 class="text-center">{{ $row->product_name }}</h4>
 				</div>
-		@endif
-	@endforeach	
+			@endforeach
+		</div>
+	</div>
+</div>
 @stop

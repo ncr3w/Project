@@ -14,17 +14,39 @@
 
 /*
 |--------------------------------------------------------------------------
-| Staff Routes
+Login And Auth
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('user/activation/{token}', 'Auth\UserRegisterController@activateUser')->name('user.activate');
+Route::post('/login', 'Auth\UserLoginController@login')->name('user.login');
+Route::post('/register', 'Auth\UserRegisterController@register')->name('user.register');
+Route::get('auth/{provider}', 'Auth\UserLoginController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\UserLoginController@handleProviderCallback');
+
+/*
+|--------------------------------------------------------------------------
+| User Webpage Routes
 |--------------------------------------------------------------------------
 |
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/Browse', 'ProductViewController@index')->name('product.index');
+Route::get('/Register', 'HomeController@register')->name('home.register');
+Route::get('/Browse/', 'ProductViewController@index')->name('product.index');
+Route::get('/Browse/New/', 'ProductViewController@browseallnew')->name('product.browse');
+Route::get('/Browse/New/{params}', 'ProductViewController@browsenew')->name('product.browse')->where('params', '.*');
 Route::get('/Product/New/{article}/{name}', 'ProductViewController@newproduct')->name('product.new');
 Route::get('/Product/Used/{article}/{name}/{id}', 'ProductViewController@usedproduct')->name('product.used');
 
-Route::group(['prefix' => 'staffview', 'namespace' => 'Staffview','middleware' => ['role:superadmin, role:admin']], function () {	
+/*
+|--------------------------------------------------------------------------
+| Staff Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::group(['prefix' => 'staffview', 'namespace' => 'Staffview','middleware' => ['role:superadmin, role:admin']], function () {
 
 	Route::get('/', 'HomeController@index');
 	Route::get('roles/showpermission/{id}',[ 'uses' => 'RolesController@showpermission', 'as' => 'roles.showpermission']);
@@ -55,17 +77,17 @@ Route::group(['prefix' => 'staffview', 'namespace' => 'Staffview','middleware' =
 	Route::resource('asks', 'AsksController');
 	Route::resource('product_detail', 'ProductDetailsController');
     Route::resource('products', 'ProductsController');
-    Route::resource('divisions', 'DivisionsController'); 
-	Route::resource('staffs', 'StaffsController'); 
+    Route::resource('divisions', 'DivisionsController');
+	Route::resource('staffs', 'StaffsController');
 	Route::resource('customers', 'CustomersController');
 	Route::resource('address', 'AddressController');
-	Route::resource('roles', 'RolesController'); 
+	Route::resource('roles', 'RolesController');
 	Route::resource('permissions', 'PermissionsController');
 	Route::resource('tickets', 'TicketsController');
 	Route::resource('blogs', 'BlogsController');
 	Route::resource('banners', 'BannersController');
 	Route::resource('ticket-chats', 'TicketChatsController');
-	
+
 });
 
 Route::group(['prefix' => 'staffview','namespace' => 'Auth'],function(){
@@ -81,13 +103,15 @@ Route::group(['prefix' => 'staffview','namespace' => 'Auth'],function(){
     Route::post('password/reset', 'ResetPasswordController@reset');
 });
 
+/*
+|--------------------------------------------------------------------------
+| JSON
+|--------------------------------------------------------------------------
+|
+*/
+
 Route::group(['prefix' => 'location', 'namespace' => 'Location'], function () {
 	Route::get('regencies/{id}',[ 'uses' => 'RegenciesController@getRegencies', 'as' => 'location.getregencies']);
 	Route::get('address/{email}',[ 'uses' => 'AddressController@getAddress', 'as' => 'location.getaddress']);
 	Route::get('districts/{id}',[ 'uses' => 'DistrictsController@getDistricts', 'as' => 'location.getdistrict']);
-});	
-
-
-
-
-
+});

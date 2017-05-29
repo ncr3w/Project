@@ -7,8 +7,9 @@ use App\Http\Controllers\Controller;
 use App\ActivationService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
-class RegisterController extends Controller
+class UserRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +39,7 @@ class RegisterController extends Controller
      */
     public function __construct(ActivationService $activationService)
     {
-      $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+      $this->middleware('guest', ['except' => 'logout']);
       $this->activationService = $activationService;
     }
 
@@ -56,7 +57,7 @@ class RegisterController extends Controller
 
       $this->activationService->sendActivationMail($user);
 
-      return redirect('/login')->with('status', 'We sent you an activation code. Check your email.');
+      return redirect('/Register')->with('status', 'Kami telah mengirim email konfirmasi, silakan cek email anda untuk aktivasi akun.');
     }
 
     /**

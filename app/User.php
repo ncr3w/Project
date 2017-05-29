@@ -20,7 +20,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone' , 'date_of_birth' , 'gender',
+        'name',
+        'email',
+        'password',
+        'phone',
+        'date_of_birth',
+        'gender',
+        'activated',
+        'provider',
     ];
 
     /**
@@ -31,17 +38,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-	
+
 	public function address()
     {
         return $this->hasMany('App\Models\Address','id_user','id');
     }
-	
+
 	public function balance_in()
     {
         return $this->hasMany('App\Models\BalanceIn','id_user','id');
     }
-	
+
 	public function balance_out()
     {
         return $this->hasMany('App\Models\BalanceOut','id_user','id');

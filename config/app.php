@@ -165,6 +165,7 @@ return [
 		Collective\Html\HtmlServiceProvider::class,
 		Laratrust\LaratrustServiceProvider::class,
 		Intervention\Image\ImageServiceProvider::class,
+		Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -232,6 +233,7 @@ return [
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Laratrust'   => Laratrust\LaratrustFacade::class,
 		'Image' => Intervention\Image\Facades\Image::class,
+		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

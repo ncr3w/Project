@@ -1,9 +1,20 @@
-@extends('layouts.app')
+@extends('webpage.layout.webpage_main')
+@include('webpage.layout.webpage_header')
 
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+      @if (session('warning'))
+          <div class="alert alert-warning">
+              {{ session('warning') }}
+          </div>
+      @endif
+      @if (session('status'))
+          <div class="alert alert-success" style="padding:100px;">
+              {{ session('status') }}
+          </div>
+      @else
+        <div class="col-md-8 col-md-offset-2" style="padding:100px;">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
@@ -11,7 +22,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Nama</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -25,7 +36,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -33,6 +44,20 @@
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+						<div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+							<label for="phone" class="col-md-4 control-label">Telepon</label>
+
+						<div class="col-md-6">
+                                <input id="phone" type="number" class="form-control" name="phone" value="{{ old('phone') }}" required>
+
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -71,6 +96,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 @endsection

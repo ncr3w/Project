@@ -28,7 +28,7 @@
         <h3>Lorem Itsum<h3>
 		<p>et dolor</p>
       </div>
-    </div>     
+    </div>
   </div>
 
   <!-- Controls -->
